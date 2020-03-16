@@ -57,7 +57,7 @@ void MyHandle::Server(int connfd, std::string remoteIp, int port) {
                 temp->push_front(remoteIp);
                 my_mutex.unlock();
             } else {
-                list<string> *templist = new list<string>;
+                auto *templist = new list<string>;
                 templist->push_front(remoteIp);
                 my_mutex.lock();
                 server_list_map[serName] = templist;
@@ -100,7 +100,7 @@ void MyHandle::Server(int connfd, std::string remoteIp, int port) {
             writer.StartObject();
             writer.Key(key_val.first.c_str());
             writer.StartArray();
-            for (auto ip : *key_val.second) {
+            for (auto &ip : *key_val.second) {
                 writer.String(ip.c_str());
             }
             writer.EndArray();
@@ -116,4 +116,12 @@ void MyHandle::Server(int connfd, std::string remoteIp, int port) {
     }
 
     close(connfd);
+}
+
+
+/**
+ * 轮训检测服务端是否在线
+ */
+void MyHandle::HeartCheck() {
+    thread t();
 }

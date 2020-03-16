@@ -1,0 +1,1 @@
+C:/cygwin64/bin/g++.exe -g  -Wl,--enable-auto-import CMakeFiles/main.cpp.dir/MyHandle.cpp.o CMakeFiles/main.cpp.dir/Server.cpp.o  -o main.cpp.exe -Wl,--out-implib,libmain.cpp.dll.a -Wl,--major-image-version,0,--minor-image-version,0 
