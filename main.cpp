@@ -4,12 +4,13 @@
 #include <thread>
 #include <iostream>
 using namespace std;
-#define PORT 8527
+#define SERVER_PORT 8527
 
 
 int main() {
-    auto *server = new Server(PORT);
+    auto *server = new Server(SERVER_PORT);
     auto *myHandle =  new MyHandle();
+    myHandle->HeartCheck();
     server->Init();
     server->Start(myHandle);
     return 0;

@@ -17,7 +17,7 @@
 #include <iostream>
 using namespace std;
 #define MAXLINE 4096
-
+#define CLIENT_PORT 8528
 
 class MyHandle : public Handler {
 private:
@@ -28,7 +28,11 @@ public:
     ~MyHandle();
     void Server(int connfd, string remoteIp, int port);
     void HeartCheck();
+    void HeartCheckEntry();
+    bool DoCheck(const string &ip);
+    void DeleteAddr(string ip);
 };
 
+bool count(const list<string> &l, string target);
 
 #endif //CPP_TCP_DEMO_MYHANDLE_H

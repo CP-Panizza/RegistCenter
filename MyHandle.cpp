@@ -3,7 +3,15 @@
 //
 
 
-
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#include<errno.h>
+#include<sys/types.h>
+#include<sys/socket.h>
+#include<netinet/in.h>
+#include<arpa/inet.h>
+#include<unistd.h>
 #include "MyHandle.h"
 #include "libs/rapidjson/document.h"
 #include "libs/rapidjson/writer.h"
@@ -51,18 +59,16 @@ void MyHandle::Server(int connfd, std::string remoteIp, int port) {
         const Value &serverList = d["ServiceList"];
         for (int i = 0; i < serverList.Size(); ++i) {
             string serName(serverList[i].GetString());
+            my_mutex.lock();//加锁读
             if (server_list_map.count(serName)) {
                 list<string> *temp = server_list_map[serName];
-                my_mutex.lock();
                 temp->push_front(remoteIp);
-                my_mutex.unlock();
             } else {
                 auto *templist = new list<string>;
                 templist->push_front(remoteIp);
-                my_mutex.lock();
                 server_list_map[serName] = templist;
-                my_mutex.unlock();
             }
+            my_mutex.unlock();//加锁读
         }
         respmsg = "{\"ok\":true, \"msg\":\"Done\", \"data\":[]}";
 
@@ -81,12 +87,14 @@ void MyHandle::Server(int connfd, std::string remoteIp, int port) {
 
         for (auto it = serviceList.Begin(); it != serviceList.End(); it++) {
             string ser_name(it->GetString());
+            my_mutex.lock(); //加锁读
             if (server_list_map.count(ser_name)) {
                 temp_map[ser_name] = server_list_map[ser_name];
             } else {
                 list<string> tmep_list;
                 temp_map[ser_name] = &tmep_list;
             }
+            my_mutex.unlock(); //加锁读
         }
         writer.StartObject();
         writer.Key("ok");
@@ -123,5 +131,105 @@ void MyHandle::Server(int connfd, std::string remoteIp, int port) {
  * 轮训检测服务端是否在线
  */
 void MyHandle::HeartCheck() {
-    thread t();
+    cout << "start heartCheck" << endl;
+    thread t(&MyHandle::HeartCheckEntry, this);
+    t.detach();
+}
+
+
+void MyHandle::HeartCheckEntry() {
+    list<string> addrs; //存放去重复后的远端服务器地址
+    while (true) {
+        if (server_list_map.empty()) {
+            this_thread::sleep_for(std::chrono::milliseconds(10000));
+            continue;
+        }
+
+
+        for (auto l : server_list_map) {
+            for (auto ip : *(l.second)) {
+                if (!count(addrs, ip)) {
+                    addrs.push_front(ip);
+                }
+            }
+        }
+
+        for (auto x : addrs) {
+            auto pos = x.find(":");
+            string ip = x.substr(0, pos);
+            bool ok = DoCheck(ip);
+            if (!ok) {
+                my_mutex.lock();
+                DeleteAddr(x);
+                my_mutex.unlock();
+            }
+        }
+        addrs.clear();
+        this_thread::sleep_for(std::chrono::minutes(3));
+    }
+}
+
+
+bool count(const list<string> &l, string target) {
+    for (auto x : l) {
+        if (x == target)
+            return true;
+    }
+    return false;
+}
+
+
+bool MyHandle::DoCheck(const string &ip) {
+    int sockfd, n;
+    char recvline[100], sendline[] = "CHECK";
+    struct sockaddr_in servaddr;
+    if ((sockfd = socket(AF_INET, SOCK_STREAM, 0)) < 0) {
+        printf("create socket error: %s(errno: %d)\n", strerror(errno), errno);
+        return true;
+    }
+    memset(&servaddr, 0, sizeof(servaddr));
+    servaddr.sin_family = AF_INET;
+    servaddr.sin_port = htons(CLIENT_PORT);
+    if (inet_pton(AF_INET, ip.c_str(), &servaddr.sin_addr) <= 0) {
+        printf("inet_pton error for %s\n", ip.c_str());
+        return true;
+    }
+
+    if (connect(sockfd, (struct sockaddr *) &servaddr, sizeof(servaddr)) < 0) {
+        printf("connect error: %s(errno: %d)\n", strerror(errno), errno);
+        return false;
+    }
+
+    if (send(sockfd, sendline, strlen(sendline), 0) < 0) {
+        printf("send msg error: %s(errno: %d)\n", strerror(errno), errno);
+        return false;
+    }
+
+    if ((n = (int) recv(sockfd, recvline, sizeof(recvline), 0)) < 0) {
+        printf("%s\n", "recv err");
+        return false;
+    }
+    recvline[n] = '\0';
+    close(sockfd);
+    return true;
+}
+
+/**
+ * 删除拼不通的远端服务ip
+ * @param ip
+ */
+void MyHandle::DeleteAddr(string ip) {
+    list<string> emptyListName;
+    for (auto x : server_list_map) {
+        if (count(*(x.second), ip)) {
+            x.second->remove(ip);
+            if (x.second->empty()) {
+                emptyListName.push_back(x.first);
+            }
+        }
+    }
+
+    for (auto x : emptyListName) {
+        server_list_map.erase(x);
+    }
 }
