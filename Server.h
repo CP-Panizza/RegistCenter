@@ -23,6 +23,7 @@ public:
     ~Server();
     void Init();
     void Start(Handler *);
+    void Accept(Handler *);
     void Close();
 
 

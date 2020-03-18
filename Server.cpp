@@ -28,8 +28,6 @@ void Server::Init() {
         exit(-1);
     }
 
-
-
     if (bind(listenfd, (struct sockaddr *) &servaddr, sizeof(servaddr)) == -1) {
         printf("bind socket error: %s(errno: %d)\n", strerror(errno), errno);
         exit(-1);
@@ -49,17 +47,7 @@ void Server::Init() {
 void Server::Start(Handler *handler) {
     printf("======waiting for client's request======\n");
     while (1) {
-        int connfd;
-        struct sockaddr_in addrClient;
-        socklen_t len = sizeof(struct sockaddr_in);
-        if ((connfd = accept(listenfd, (struct sockaddr *)&addrClient, &len)) == -1) {
-            printf("accept socket error: %s(errno: %d)", strerror(errno), errno);
-            continue;
-        }
-
-
-        thread t(&Handler::Server, handler, connfd, string(inet_ntoa(addrClient.sin_addr)), (int)ntohs(addrClient.sin_port));
-        t.detach();
+        Accept(handler);
     }
 }
 
@@ -67,5 +55,18 @@ void Server::Start(Handler *handler) {
 void Server::Close() {
     printf("%s\n", "close listen!");
     close(listenfd);
+}
+
+void Server::Accept(Handler *handler) {
+    int connfd;
+    struct sockaddr_in addrClient;
+    socklen_t len = sizeof(struct sockaddr_in);
+    if ((connfd = accept(listenfd, (struct sockaddr *)&addrClient, &len)) == -1) {
+        printf("accept socket error: %s(errno: %d)", strerror(errno), errno);
+        return;
+    }
+
+    thread t(&Handler::Server, handler, connfd, string(inet_ntoa(addrClient.sin_addr)), (int)ntohs(addrClient.sin_port));
+    t.detach();
 }
 

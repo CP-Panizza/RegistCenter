@@ -155,10 +155,8 @@ void MyHandle::HeartCheckEntry() {
         }
 
         for (auto x : addrs) {
-            auto pos = x.find(":");
-            string ip = x.substr(0, pos);
-            bool ok = DoCheck(ip);
-            if (!ok) {
+            string ip = x.substr(0, x.find(":"));
+            if (!DoCheck(ip)) {
                 my_mutex.lock();
                 DeleteAddr(x);
                 my_mutex.unlock();
