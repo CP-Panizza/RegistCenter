@@ -138,32 +138,14 @@ void MyHandle::HeartCheck() {
 
 
 void MyHandle::HeartCheckEntry() {
-    list<string> addrs; //存放去重复后的远端服务器地址
     while (true) {
         if (server_list_map.empty()) {
             this_thread::sleep_for(std::chrono::milliseconds(10000));
             continue;
         }
 
-
-        for (auto l : server_list_map) {
-            for (auto ip : *(l.second)) {
-                if (!count(addrs, ip)) {
-                    addrs.push_front(ip);
-                }
-            }
-        }
-
-        for (auto x : addrs) {
-            string ip = x.substr(0, x.find(":"));
-            if (!DoCheck(ip)) {
-                my_mutex.lock();
-                DeleteAddr(x);
-                my_mutex.unlock();
-            }
-        }
-        addrs.clear();
-        this_thread::sleep_for(std::chrono::minutes(3));
+        PreCheck();
+        this_thread::sleep_for(std::chrono::seconds(10));
     }
 }
 
@@ -229,5 +211,25 @@ void MyHandle::DeleteAddr(string ip) {
 
     for (auto x : emptyListName) {
         server_list_map.erase(x);
+    }
+}
+
+void MyHandle::PreCheck() {
+    list<string> addrs; //存放去重复后的远端服务器地址
+    for (auto l : server_list_map) {
+        for (auto ip : *(l.second)) {
+            if (!count(addrs, ip)) {
+                addrs.push_front(ip);
+            }
+        }
+    }
+
+    for (auto x : addrs) {
+        string ip = x.substr(0, x.find(":"));
+        if (!DoCheck(ip)) {
+            my_mutex.lock();
+            DeleteAddr(x);
+            my_mutex.unlock();
+        }
     }
 }

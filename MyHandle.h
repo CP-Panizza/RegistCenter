@@ -29,6 +29,7 @@ public:
     void Server(int connfd, string remoteIp, int port);
     void HeartCheck();
     void HeartCheckEntry();
+    void PreCheck();
     bool DoCheck(const string &ip);
     void DeleteAddr(string ip);
 };
