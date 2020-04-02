@@ -10,7 +10,7 @@ class Handler {
 public:
     Handler(){};
     virtual ~Handler(){};
-    virtual void Server(int connfd, std::string remoteIp, int port) = 0;
+    virtual void Server(int connfd, std::string remoteIp) = 0;
 };
 
 

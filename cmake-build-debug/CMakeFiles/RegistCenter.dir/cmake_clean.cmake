@@ -1,9 +1,10 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/RegistCenter.dir/main.cpp.o"
-  "CMakeFiles/RegistCenter.dir/MyHandle.cpp.o"
-  "CMakeFiles/RegistCenter.dir/Server.cpp.o"
+  "CMakeFiles/RegistCenter.dir/main.cpp.obj"
+  "CMakeFiles/RegistCenter.dir/MyHandle.cpp.obj"
+  "CMakeFiles/RegistCenter.dir/Server.cpp.obj"
   "RegistCenter.pdb"
   "RegistCenter.exe"
+  "RegistCenter.exe.manifest"
   "libRegistCenter.dll.a"
 )
 

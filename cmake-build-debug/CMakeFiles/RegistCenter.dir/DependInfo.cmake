@@ -4,9 +4,9 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/cygdrive/c/Users/Administrator/Desktop/RegistCenter/MyHandle.cpp" "/cygdrive/c/Users/Administrator/Desktop/RegistCenter/cmake-build-debug/CMakeFiles/RegistCenter.dir/MyHandle.cpp.o"
-  "/cygdrive/c/Users/Administrator/Desktop/RegistCenter/Server.cpp" "/cygdrive/c/Users/Administrator/Desktop/RegistCenter/cmake-build-debug/CMakeFiles/RegistCenter.dir/Server.cpp.o"
-  "/cygdrive/c/Users/Administrator/Desktop/RegistCenter/main.cpp" "/cygdrive/c/Users/Administrator/Desktop/RegistCenter/cmake-build-debug/CMakeFiles/RegistCenter.dir/main.cpp.o"
+  "C:/Users/Administrator/Desktop/RegistCenter/MyHandle.cpp" "C:/Users/Administrator/Desktop/RegistCenter/cmake-build-debug/CMakeFiles/RegistCenter.dir/MyHandle.cpp.obj"
+  "C:/Users/Administrator/Desktop/RegistCenter/Server.cpp" "C:/Users/Administrator/Desktop/RegistCenter/cmake-build-debug/CMakeFiles/RegistCenter.dir/Server.cpp.obj"
+  "C:/Users/Administrator/Desktop/RegistCenter/main.cpp" "C:/Users/Administrator/Desktop/RegistCenter/cmake-build-debug/CMakeFiles/RegistCenter.dir/main.cpp.obj"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

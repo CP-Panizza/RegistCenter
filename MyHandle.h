@@ -8,9 +8,9 @@
 #include <list>
 #include <mutex>
 #include <map>
-#include "interface/Handler.h"
+#include "Handler.h"
 #include <thread>
-#include <sys/socket.h>
+#include <winsock2.h>
 #include <cstdio>
 #include <unistd.h>
 #include <cstring>
@@ -26,7 +26,7 @@ private:
 public:
     MyHandle();
     ~MyHandle();
-    void Server(int connfd, string remoteIp, int port);
+    void Server(int connfd, string remoteIp);
     void HeartCheck();
     void HeartCheckEntry();
     void PreCheck();

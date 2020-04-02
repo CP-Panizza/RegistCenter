@@ -8,9 +8,7 @@
 #include<string.h>
 #include<errno.h>
 #include<sys/types.h>
-#include<sys/socket.h>
-#include<netinet/in.h>
-#include<arpa/inet.h>
+#include <winsock2.h>
 #include<unistd.h>
 #include "MyHandle.h"
 #include "libs/rapidjson/document.h"
@@ -40,11 +38,11 @@ MyHandle::~MyHandle() {
  * @param remoteIp
  * @param port
  */
-void MyHandle::Server(int connfd, std::string remoteIp, int port) {
+void MyHandle::Server(int connfd, std::string remoteIp) {
     char buff[MAXLINE];
     string respmsg;
     int n;
-    n = (int) recv(connfd, buff, MAXLINE, 0);
+    n =  recv(connfd, buff, MAXLINE, 0);
     buff[n] = '\0';
     printf("recv msg from client: %s\n", buff);
 
@@ -119,11 +117,9 @@ void MyHandle::Server(int connfd, std::string remoteIp, int port) {
         respmsg = string(s.GetString());
     }
 
-    if (send(connfd, (void *) respmsg.c_str(), strlen(respmsg.c_str()), 0) < 0) {
+    if (send(connfd, respmsg.c_str(), strlen(respmsg.c_str()), 0) < 0) {
         printf("send msg error: %s(errno: %d)\n", strerror(errno), errno);
     }
-
-    close(connfd);
 }
 
 
@@ -160,7 +156,7 @@ bool count(const list<string> &l, string target) {
 
 
 bool MyHandle::DoCheck(const string &ip) {
-    int sockfd, n;
+    SOCKET sockfd, n;
     char recvline[100], sendline[] = "CHECK";
     struct sockaddr_in servaddr;
     if ((sockfd = socket(AF_INET, SOCK_STREAM, 0)) < 0) {
@@ -170,10 +166,8 @@ bool MyHandle::DoCheck(const string &ip) {
     memset(&servaddr, 0, sizeof(servaddr));
     servaddr.sin_family = AF_INET;
     servaddr.sin_port = htons(CLIENT_PORT);
-    if (inet_pton(AF_INET, ip.c_str(), &servaddr.sin_addr) <= 0) {
-        printf("inet_pton error for %s\n", ip.c_str());
-        return true;
-    }
+    servaddr.sin_addr.s_addr = inet_addr(ip.c_str());
+
 
     if (connect(sockfd, (struct sockaddr *) &servaddr, sizeof(servaddr)) < 0) {
         printf("connect error: %s(errno: %d)\n", strerror(errno), errno);
@@ -185,7 +179,7 @@ bool MyHandle::DoCheck(const string &ip) {
         return false;
     }
 
-    if ((n = (int) recv(sockfd, recvline, sizeof(recvline), 0)) < 0) {
+    if ((n = recv(sockfd, recvline, sizeof(recvline), 0)) < 0) {
         printf("%s\n", "recv err");
         return false;
     }
