@@ -19,10 +19,16 @@ using namespace std;
 #define MAXLINE 4096
 #define CLIENT_PORT 8528
 
+struct ServerInfo{
+    string ip;
+    int proportion;
+};
+
+
 class MyHandle : public Handler {
 private:
     mutex my_mutex;
-    map<string, list<string> *> server_list_map;
+    map<string, list<ServerInfo> *> server_list_map;
 public:
     MyHandle();
     ~MyHandle();
@@ -34,6 +40,6 @@ public:
     void DeleteAddr(string ip);
 };
 
-bool count(const list<string> &l, string target);
+bool count(const list<ServerInfo> &l, string target);
 
 #endif //CPP_TCP_DEMO_MYHANDLE_H
