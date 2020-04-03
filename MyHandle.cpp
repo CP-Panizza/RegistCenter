@@ -42,7 +42,7 @@ void MyHandle::Server(int connfd, std::string remoteIp) {
     char buff[MAXLINE];
     string respmsg;
     int n;
-    n =  recv(connfd, buff, MAXLINE, 0);
+    n = recv(connfd, buff, MAXLINE, 0);
     buff[n] = '\0';
     printf("recv msg from client: %s\n", buff);
 
@@ -58,7 +58,7 @@ void MyHandle::Server(int connfd, std::string remoteIp) {
         const Value &serverList = d["ServiceList"];
         for (int i = 0; i < serverList.Size(); ++i) {
             string serName(serverList[i].GetString());
-            my_mutex.lock(); //加锁读
+            lock.lockWrite();
             if (server_list_map.count(serName)) {
                 list<ServerInfo> *temp = server_list_map[serName];
                 temp->push_front(ServerInfo{remoteIp, proportion});
@@ -67,7 +67,7 @@ void MyHandle::Server(int connfd, std::string remoteIp) {
                 templist->push_front(ServerInfo{remoteIp, proportion});
                 server_list_map[serName] = templist;
             }
-            my_mutex.unlock();//加锁读
+            lock.unlockWrite();
         }
         respmsg = "{\"ok\":true, \"msg\":\"Done\", \"data\":[]}";
 
@@ -78,44 +78,49 @@ void MyHandle::Server(int connfd, std::string remoteIp) {
          * }
          */
     } else if (d.HasMember("Op") && string(d["Op"].GetString()) == "PULL" && d.HasMember("ServiceList")) { //拉取服务列表
-//        rapidjson::StringBuffer s;
-//        rapidjson::Writer<rapidjson::StringBuffer> writer(s);
-//
-//        map<string, list<ServerInfo> *> temp_map;
-//        auto serviceList = d["ServiceList"].GetArray();
-//
-//        for (auto it = serviceList.Begin(); it != serviceList.End(); it++) {
-//            string ser_name(it->GetString());
-//            my_mutex.lock(); //加锁读
-//            if (server_list_map.count(ser_name)) {
-//                temp_map[ser_name] = server_list_map[ser_name];
-//            } else {
-//                list<ServerInfo> tmep_list;
-//                temp_map[ser_name] = &tmep_list;
-//            }
-//            my_mutex.unlock(); //加锁读
-//        }
-//        writer.StartObject();
-//        writer.Key("ok");
-//        writer.Bool(true);
-//        writer.Key("msg");
-//        writer.String("Done");
-//
-//        writer.Key("data");
-//        writer.StartArray();
-//        for (auto key_val : temp_map) {
-//            writer.StartObject();
-//            writer.Key(key_val.first.c_str());
-//            writer.StartArray();
-//            for (auto &ip : *key_val.second) {
-//                writer.String(ip.c_str());
-//            }
-//            writer.EndArray();
-//            writer.EndObject();
-//        }
-//        writer.EndArray();
-//        writer.EndObject();
-//        respmsg = string(s.GetString());
+        rapidjson::StringBuffer s;
+        rapidjson::Writer<rapidjson::StringBuffer> writer(s);
+
+        map<string, list<ServerInfo> *> temp_map;
+        auto serviceList = d["ServiceList"].GetArray();
+
+        for (auto it = serviceList.Begin(); it != serviceList.End(); it++) {
+            string ser_name(it->GetString());
+            lock.lockRead();
+            if (server_list_map.count(ser_name)) {
+                temp_map[ser_name] = server_list_map[ser_name];
+            } else {
+                list<ServerInfo> tmep_list;
+                temp_map[ser_name] = &tmep_list;
+            }
+            lock.unlockRead();
+        }
+        writer.StartObject();
+        writer.Key("ok");
+        writer.Bool(true);
+        writer.Key("msg");
+        writer.String("Done");
+
+        writer.Key("data");
+        writer.StartArray();
+        for (auto key_val : temp_map) {
+            writer.StartObject();
+            writer.Key(key_val.first.c_str());
+            writer.StartArray();
+            for (auto &ip : *key_val.second) {
+                writer.StartObject();
+                writer.Key("Ip");
+                writer.String(ip.ip.c_str());
+                writer.Key("Proportion");
+                writer.Int(ip.proportion);
+                writer.EndObject();
+            }
+            writer.EndArray();
+            writer.EndObject();
+        }
+        writer.EndArray();
+        writer.EndObject();
+        respmsg = string(s.GetString());
     }
 
     if (send(connfd, respmsg.c_str(), strlen(respmsg.c_str()), 0) < 0) {
@@ -137,13 +142,22 @@ void MyHandle::HeartCheck() {
 void MyHandle::HeartCheckEntry() {
     while (true) {
         if (server_list_map.empty()) {
-            this_thread::sleep_for(std::chrono::milliseconds(10000));
+            this_thread::sleep_for(std::chrono::milliseconds(5000));
             continue;
         }
 
         PreCheck();
         this_thread::sleep_for(std::chrono::seconds(10));
     }
+}
+
+
+bool count(const list<string> &l, string target) {
+    for (auto x : l) {
+        if (x == target)
+            return true;
+    }
+    return false;
 }
 
 
@@ -195,9 +209,10 @@ bool MyHandle::DoCheck(const string &ip) {
  */
 void MyHandle::DeleteAddr(string ip) {
     list<string> emptyListName;
+
     for (auto x : server_list_map) {
         if (count(*(x.second), ip)) {
-            x.second->remove(ip);
+            x.second->remove_if([=](ServerInfo n) { return n.ip == ip; });
             if (x.second->empty()) {
                 emptyListName.push_back(x.first);
             }
@@ -211,6 +226,7 @@ void MyHandle::DeleteAddr(string ip) {
 
 void MyHandle::PreCheck() {
     list<string> addrs; //存放去重复后的远端服务器地址
+    this->lock.lockRead();
     for (auto l : server_list_map) {
         for (auto ip : *(l.second)) {
             if (!count(addrs, ip.ip)) {
@@ -218,13 +234,14 @@ void MyHandle::PreCheck() {
             }
         }
     }
+    this->lock.unlockRead();
 
     for (auto x : addrs) {
         string ip = x.substr(0, x.find(":"));
         if (!DoCheck(ip)) {
-            my_mutex.lock();
+            this->lock.lockWrite();
             DeleteAddr(x);
-            my_mutex.unlock();
+            this->lock.unlockWrite();
         }
     }
 }

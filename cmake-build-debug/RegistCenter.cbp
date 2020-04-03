@@ -89,6 +89,9 @@
 		<Unit filename="C:/Users/Administrator/Desktop/RegistCenter/MyHandle.h">
 			<Option target="RegistCenter"/>
 		</Unit>
+		<Unit filename="C:/Users/Administrator/Desktop/RegistCenter/RWLock.hpp">
+			<Option target="RegistCenter"/>
+		</Unit>
 		<Unit filename="C:/Users/Administrator/Desktop/RegistCenter/Server.cpp">
 			<Option target="RegistCenter"/>
 		</Unit>

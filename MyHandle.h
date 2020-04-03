@@ -9,6 +9,7 @@
 #include <mutex>
 #include <map>
 #include "Handler.h"
+#include "RWLock.hpp"
 #include <thread>
 #include <winsock2.h>
 #include <cstdio>
@@ -27,7 +28,7 @@ struct ServerInfo{
 
 class MyHandle : public Handler {
 private:
-    mutex my_mutex;
+    RWLock lock;
     map<string, list<ServerInfo> *> server_list_map;
 public:
     MyHandle();
@@ -40,6 +41,7 @@ public:
     void DeleteAddr(string ip);
 };
 
+bool count(const list<string> &l, string target);
 bool count(const list<ServerInfo> &l, string target);
 
 #endif //CPP_TCP_DEMO_MYHANDLE_H

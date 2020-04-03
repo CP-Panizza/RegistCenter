@@ -4,6 +4,7 @@
 CMakeFiles/RegistCenter.dir/MyHandle.cpp.obj: ../Handler.h
 CMakeFiles/RegistCenter.dir/MyHandle.cpp.obj: ../MyHandle.cpp
 CMakeFiles/RegistCenter.dir/MyHandle.cpp.obj: ../MyHandle.h
+CMakeFiles/RegistCenter.dir/MyHandle.cpp.obj: ../RWLock.hpp
 CMakeFiles/RegistCenter.dir/MyHandle.cpp.obj: ../libs/rapidjson/allocators.h
 CMakeFiles/RegistCenter.dir/MyHandle.cpp.obj: ../libs/rapidjson/document.h
 CMakeFiles/RegistCenter.dir/MyHandle.cpp.obj: ../libs/rapidjson/encodedstream.h
@@ -36,6 +37,7 @@ CMakeFiles/RegistCenter.dir/Server.cpp.obj: ../Server.h
 
 CMakeFiles/RegistCenter.dir/main.cpp.obj: ../Handler.h
 CMakeFiles/RegistCenter.dir/main.cpp.obj: ../MyHandle.h
+CMakeFiles/RegistCenter.dir/main.cpp.obj: ../RWLock.hpp
 CMakeFiles/RegistCenter.dir/main.cpp.obj: ../Server.h
 CMakeFiles/RegistCenter.dir/main.cpp.obj: ../main.cpp
 
