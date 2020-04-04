@@ -6,6 +6,10 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_CHECK_CXX
   "C:/Users/Administrator/Desktop/RegistCenter/MyHandle.cpp" "C:/Users/Administrator/Desktop/RegistCenter/cmake-build-debug/CMakeFiles/RegistCenter.dir/MyHandle.cpp.obj"
   "C:/Users/Administrator/Desktop/RegistCenter/Server.cpp" "C:/Users/Administrator/Desktop/RegistCenter/cmake-build-debug/CMakeFiles/RegistCenter.dir/Server.cpp.obj"
+  "C:/Users/Administrator/Desktop/RegistCenter/libs/http/HttpServer.cpp" "C:/Users/Administrator/Desktop/RegistCenter/cmake-build-debug/CMakeFiles/RegistCenter.dir/libs/http/HttpServer.cpp.obj"
+  "C:/Users/Administrator/Desktop/RegistCenter/libs/http/Request.cpp" "C:/Users/Administrator/Desktop/RegistCenter/cmake-build-debug/CMakeFiles/RegistCenter.dir/libs/http/Request.cpp.obj"
+  "C:/Users/Administrator/Desktop/RegistCenter/libs/http/Response.cpp" "C:/Users/Administrator/Desktop/RegistCenter/cmake-build-debug/CMakeFiles/RegistCenter.dir/libs/http/Response.cpp.obj"
+  "C:/Users/Administrator/Desktop/RegistCenter/libs/http/util.cpp" "C:/Users/Administrator/Desktop/RegistCenter/cmake-build-debug/CMakeFiles/RegistCenter.dir/libs/http/util.cpp.obj"
   "C:/Users/Administrator/Desktop/RegistCenter/main.cpp" "C:/Users/Administrator/Desktop/RegistCenter/cmake-build-debug/CMakeFiles/RegistCenter.dir/main.cpp.obj"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")

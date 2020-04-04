@@ -16,10 +16,11 @@
 #include <unistd.h>
 #include <cstring>
 #include <iostream>
+#include "./libs/http/HttpServer.h"
 using namespace std;
 #define MAXLINE 4096
 #define CLIENT_PORT 8528
-
+#define HTTP_PORT 8529
 struct ServerInfo{
     string ip;
     int proportion;
@@ -28,17 +29,25 @@ struct ServerInfo{
 
 class MyHandle : public Handler {
 private:
+    string http_username;
+    string http_pwd;
     RWLock lock;
+    int heart_check_time;
+    HttpServer *http_server;
     map<string, list<ServerInfo> *> server_list_map;
 public:
-    MyHandle();
+    MyHandle(string username, string pwd);
     ~MyHandle();
     void Server(int connfd, string remoteIp);
-    void HeartCheck();
+    void HeartCheck(int);
     void HeartCheckEntry();
     void PreCheck();
     bool DoCheck(const string &ip);
     void DeleteAddr(string ip);
+    void HttpLogin(Request req, Response *resp);
+    void HttpAddServer(Request req, Response *resp);
+    void HttpDelServer(Request req, Response *resp);
+    void HttpGetAllServer(Request req, Response *resp);
 };
 
 bool count(const list<string> &l, string target);

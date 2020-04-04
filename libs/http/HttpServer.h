@@ -1,15 +1,15 @@
 //
-// Created by cmj on 20-3-26.
+// Created by Administrator on 2020/4/1.
 //
 
-#ifndef HTTP_HTTPSERVER_H
-#define HTTP_HTTPSERVER_H
-
+#ifndef HTTP_WINDOWS_HTTPSERVER_H
+#define HTTP_WINDOWS_HTTPSERVER_H
 #include <functional>
 #include <map>
+#include <list>
+#include <winsock2.h>
 #include "Request.h"
 #include "Response.h"
-#include <list>
 
 struct handle{
     handle(std::string u, std::function<void(Request, Response *)> m):url(u), method(m){}
@@ -19,25 +19,23 @@ struct handle{
 
 class HttpServer {
 public:
-    HttpServer(int port, int max_count, std::string);
+    HttpServer(int port);
     ~HttpServer();
     void set_static_path(std::string);
     void do_accept();
     void disconnect(int cfd);
-    void bind_handle(std::string method, std::string url, std::function<void(Request, Response*)> func);
+    void H(std::string method, std::string url, std::function<void(Request, Response*)> func);
     void Thread_handle(int conn);
     void run();
 
 private:
     std::string excute_pwd; //程序启动路径
     std::string static_path;
-    int socket_fd;
-    struct epoll_event *epoll_events;
-    int epoll_fd;
-    int count;
+    SOCKET socket_fd;
+    fd_set select_fd;
     int m_port;
     std::map<std::string, std::list<handle*>*> methods;
 };
 
 
-#endif //HTTP_HTTPSERVER_H
+#endif //HTTP_WINDOWS_HTTPSERVER_H

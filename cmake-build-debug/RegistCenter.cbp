@@ -98,6 +98,30 @@
 		<Unit filename="C:/Users/Administrator/Desktop/RegistCenter/Server.h">
 			<Option target="RegistCenter"/>
 		</Unit>
+		<Unit filename="C:/Users/Administrator/Desktop/RegistCenter/libs/http/HttpServer.cpp">
+			<Option target="RegistCenter"/>
+		</Unit>
+		<Unit filename="C:/Users/Administrator/Desktop/RegistCenter/libs/http/HttpServer.h">
+			<Option target="RegistCenter"/>
+		</Unit>
+		<Unit filename="C:/Users/Administrator/Desktop/RegistCenter/libs/http/Request.cpp">
+			<Option target="RegistCenter"/>
+		</Unit>
+		<Unit filename="C:/Users/Administrator/Desktop/RegistCenter/libs/http/Request.h">
+			<Option target="RegistCenter"/>
+		</Unit>
+		<Unit filename="C:/Users/Administrator/Desktop/RegistCenter/libs/http/Response.cpp">
+			<Option target="RegistCenter"/>
+		</Unit>
+		<Unit filename="C:/Users/Administrator/Desktop/RegistCenter/libs/http/Response.h">
+			<Option target="RegistCenter"/>
+		</Unit>
+		<Unit filename="C:/Users/Administrator/Desktop/RegistCenter/libs/http/util.cpp">
+			<Option target="RegistCenter"/>
+		</Unit>
+		<Unit filename="C:/Users/Administrator/Desktop/RegistCenter/libs/http/util.h">
+			<Option target="RegistCenter"/>
+		</Unit>
 		<Unit filename="C:/Users/Administrator/Desktop/RegistCenter/main.cpp">
 			<Option target="RegistCenter"/>
 		</Unit>

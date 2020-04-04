@@ -3,14 +3,17 @@
 //
 
 
-#include<stdio.h>
-#include<stdlib.h>
-#include<string.h>
-#include<errno.h>
+#include<cstdio>
+#include<cstdlib>
+#include<cstring>
+#include<cerrno>
 #include<sys/types.h>
 #include <winsock2.h>
 #include<unistd.h>
 #include "MyHandle.h"
+#include "libs/http/Response.h"
+#include "libs/http/Request.h"
+#include "libs/http/HttpServer.h"
 #include "libs/rapidjson/document.h"
 #include "libs/rapidjson/writer.h"
 #include "libs/rapidjson/stringbuffer.h"
@@ -18,8 +21,19 @@
 using namespace rapidjson;
 using namespace std;
 
-MyHandle::MyHandle() {
-
+MyHandle::MyHandle(string username, string pwd):http_username(username), http_pwd(pwd) {
+    http_server = new HttpServer(HTTP_PORT);
+    http_server->set_static_path("\\resource");
+    auto login = std::bind(&MyHandle::HttpLogin, this, std::placeholders::_1,std::placeholders::_2);
+    auto get_all = std::bind(&MyHandle::HttpGetAllServer, this, std::placeholders::_1,std::placeholders::_2);
+    auto del_server = std::bind(&MyHandle::HttpDelServer, this, std::placeholders::_1,std::placeholders::_2);
+    auto add_server = std::bind(&MyHandle::HttpAddServer, this, std::placeholders::_1,std::placeholders::_2);
+    http_server->H("POST", "/login", login);
+    http_server->H("GET", "/getAll", get_all);
+    http_server->H("DELETE", "/del", del_server);
+    http_server->H("POST", "/add", add_server);
+    thread t(&HttpServer::run,http_server);
+    t.detach();
 }
 
 MyHandle::~MyHandle() {
@@ -130,9 +144,11 @@ void MyHandle::Server(int connfd, std::string remoteIp) {
 
 
 /**
- * 轮训检测服务端是否在线
+ * 轮训检测服务端是否在线,time秒
  */
-void MyHandle::HeartCheck() {
+void MyHandle::HeartCheck(int time) {
+    this->heart_check_time = time;
+
     cout << "start heartCheck" << endl;
     thread t(&MyHandle::HeartCheckEntry, this);
     t.detach();
@@ -147,7 +163,7 @@ void MyHandle::HeartCheckEntry() {
         }
 
         PreCheck();
-        this_thread::sleep_for(std::chrono::seconds(10));
+        this_thread::sleep_for(std::chrono::seconds(heart_check_time));
     }
 }
 
@@ -224,6 +240,7 @@ void MyHandle::DeleteAddr(string ip) {
     }
 }
 
+
 void MyHandle::PreCheck() {
     list<string> addrs; //存放去重复后的远端服务器地址
     this->lock.lockRead();
@@ -242,6 +259,70 @@ void MyHandle::PreCheck() {
             this->lock.lockWrite();
             DeleteAddr(x);
             this->lock.unlockWrite();
+        }
+    }
+}
+
+void MyHandle::HttpAddServer(Request req, Response *resp) {
+    rapidjson::Document doc;
+    if(doc.Parse(req.body.c_str()).HasParseError()){
+        resp->write(200, "{\"success\":false}");
+        return;
+    }
+}
+
+void MyHandle::HttpDelServer(Request req, Response *resp) {
+    rapidjson::Document doc;
+    if(doc.Parse(req.body.c_str()).HasParseError()){
+        resp->write(200, "{\"success\":false}");
+        return;
+    }
+}
+
+void MyHandle::HttpGetAllServer(Request req, Response *resp) {
+    rapidjson::StringBuffer s;
+    rapidjson::Writer<rapidjson::StringBuffer> w(s);
+    w.StartObject();
+    w.Key("data");
+    w.StartArray();
+    this->lock.lockRead();
+    for(auto l :server_list_map){
+        for(auto x : *l.second){
+            w.StartObject();
+            w.Key("server");
+            w.String(l.first.c_str());
+            w.Key("ip");
+            w.String(x.ip.c_str());
+            w.Key("proportion");
+            w.Int(x.proportion);
+            w.EndObject();
+        }
+    }
+    w.EndArray();
+    w.EndObject();
+    std::string json_data = s.GetString();
+    resp->set_header("Content-Type", "application/json");
+    resp->write(200, json_data);
+}
+
+void MyHandle::HttpLogin(Request req, Response *resp) {
+    rapidjson::Document doc;
+    if(doc.Parse(req.body.c_str()).HasParseError()){
+        resp->write(200, "{\"success\":false}");
+        return;
+    } else {
+        if(doc.HasMember("username") && doc.HasMember("password")){
+            std::string pass = doc["username"].GetString();
+            std::string pwd = doc["password"].GetString();
+            if(pass == http_username && pwd == http_pwd){
+                resp->write(200, "{\"success\":true}");
+                return;
+            } else {
+                resp->write(200, "{\"success\":false}");
+                return;
+            }
+        } else {
+            resp->write(200, "{\"success\":false}");
         }
     }
 }

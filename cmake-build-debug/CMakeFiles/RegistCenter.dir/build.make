@@ -95,11 +95,67 @@ CMakeFiles/RegistCenter.dir/Server.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/RegistCenter.dir/Server.cpp.s"
 	D:\MinGW64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Administrator\Desktop\RegistCenter\Server.cpp -o CMakeFiles\RegistCenter.dir\Server.cpp.s
 
+CMakeFiles/RegistCenter.dir/libs/http/HttpServer.cpp.obj: CMakeFiles/RegistCenter.dir/flags.make
+CMakeFiles/RegistCenter.dir/libs/http/HttpServer.cpp.obj: ../libs/http/HttpServer.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Administrator\Desktop\RegistCenter\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/RegistCenter.dir/libs/http/HttpServer.cpp.obj"
+	D:\MinGW64\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\RegistCenter.dir\libs\http\HttpServer.cpp.obj -c C:\Users\Administrator\Desktop\RegistCenter\libs\http\HttpServer.cpp
+
+CMakeFiles/RegistCenter.dir/libs/http/HttpServer.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/RegistCenter.dir/libs/http/HttpServer.cpp.i"
+	D:\MinGW64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Administrator\Desktop\RegistCenter\libs\http\HttpServer.cpp > CMakeFiles\RegistCenter.dir\libs\http\HttpServer.cpp.i
+
+CMakeFiles/RegistCenter.dir/libs/http/HttpServer.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/RegistCenter.dir/libs/http/HttpServer.cpp.s"
+	D:\MinGW64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Administrator\Desktop\RegistCenter\libs\http\HttpServer.cpp -o CMakeFiles\RegistCenter.dir\libs\http\HttpServer.cpp.s
+
+CMakeFiles/RegistCenter.dir/libs/http/Request.cpp.obj: CMakeFiles/RegistCenter.dir/flags.make
+CMakeFiles/RegistCenter.dir/libs/http/Request.cpp.obj: ../libs/http/Request.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Administrator\Desktop\RegistCenter\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/RegistCenter.dir/libs/http/Request.cpp.obj"
+	D:\MinGW64\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\RegistCenter.dir\libs\http\Request.cpp.obj -c C:\Users\Administrator\Desktop\RegistCenter\libs\http\Request.cpp
+
+CMakeFiles/RegistCenter.dir/libs/http/Request.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/RegistCenter.dir/libs/http/Request.cpp.i"
+	D:\MinGW64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Administrator\Desktop\RegistCenter\libs\http\Request.cpp > CMakeFiles\RegistCenter.dir\libs\http\Request.cpp.i
+
+CMakeFiles/RegistCenter.dir/libs/http/Request.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/RegistCenter.dir/libs/http/Request.cpp.s"
+	D:\MinGW64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Administrator\Desktop\RegistCenter\libs\http\Request.cpp -o CMakeFiles\RegistCenter.dir\libs\http\Request.cpp.s
+
+CMakeFiles/RegistCenter.dir/libs/http/Response.cpp.obj: CMakeFiles/RegistCenter.dir/flags.make
+CMakeFiles/RegistCenter.dir/libs/http/Response.cpp.obj: ../libs/http/Response.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Administrator\Desktop\RegistCenter\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/RegistCenter.dir/libs/http/Response.cpp.obj"
+	D:\MinGW64\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\RegistCenter.dir\libs\http\Response.cpp.obj -c C:\Users\Administrator\Desktop\RegistCenter\libs\http\Response.cpp
+
+CMakeFiles/RegistCenter.dir/libs/http/Response.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/RegistCenter.dir/libs/http/Response.cpp.i"
+	D:\MinGW64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Administrator\Desktop\RegistCenter\libs\http\Response.cpp > CMakeFiles\RegistCenter.dir\libs\http\Response.cpp.i
+
+CMakeFiles/RegistCenter.dir/libs/http/Response.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/RegistCenter.dir/libs/http/Response.cpp.s"
+	D:\MinGW64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Administrator\Desktop\RegistCenter\libs\http\Response.cpp -o CMakeFiles\RegistCenter.dir\libs\http\Response.cpp.s
+
+CMakeFiles/RegistCenter.dir/libs/http/util.cpp.obj: CMakeFiles/RegistCenter.dir/flags.make
+CMakeFiles/RegistCenter.dir/libs/http/util.cpp.obj: ../libs/http/util.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Administrator\Desktop\RegistCenter\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/RegistCenter.dir/libs/http/util.cpp.obj"
+	D:\MinGW64\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\RegistCenter.dir\libs\http\util.cpp.obj -c C:\Users\Administrator\Desktop\RegistCenter\libs\http\util.cpp
+
+CMakeFiles/RegistCenter.dir/libs/http/util.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/RegistCenter.dir/libs/http/util.cpp.i"
+	D:\MinGW64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Administrator\Desktop\RegistCenter\libs\http\util.cpp > CMakeFiles\RegistCenter.dir\libs\http\util.cpp.i
+
+CMakeFiles/RegistCenter.dir/libs/http/util.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/RegistCenter.dir/libs/http/util.cpp.s"
+	D:\MinGW64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Administrator\Desktop\RegistCenter\libs\http\util.cpp -o CMakeFiles\RegistCenter.dir\libs\http\util.cpp.s
+
 # Object files for target RegistCenter
 RegistCenter_OBJECTS = \
 "CMakeFiles/RegistCenter.dir/main.cpp.obj" \
 "CMakeFiles/RegistCenter.dir/MyHandle.cpp.obj" \
-"CMakeFiles/RegistCenter.dir/Server.cpp.obj"
+"CMakeFiles/RegistCenter.dir/Server.cpp.obj" \
+"CMakeFiles/RegistCenter.dir/libs/http/HttpServer.cpp.obj" \
+"CMakeFiles/RegistCenter.dir/libs/http/Request.cpp.obj" \
+"CMakeFiles/RegistCenter.dir/libs/http/Response.cpp.obj" \
+"CMakeFiles/RegistCenter.dir/libs/http/util.cpp.obj"
 
 # External object files for target RegistCenter
 RegistCenter_EXTERNAL_OBJECTS =
@@ -107,12 +163,16 @@ RegistCenter_EXTERNAL_OBJECTS =
 RegistCenter.exe: CMakeFiles/RegistCenter.dir/main.cpp.obj
 RegistCenter.exe: CMakeFiles/RegistCenter.dir/MyHandle.cpp.obj
 RegistCenter.exe: CMakeFiles/RegistCenter.dir/Server.cpp.obj
+RegistCenter.exe: CMakeFiles/RegistCenter.dir/libs/http/HttpServer.cpp.obj
+RegistCenter.exe: CMakeFiles/RegistCenter.dir/libs/http/Request.cpp.obj
+RegistCenter.exe: CMakeFiles/RegistCenter.dir/libs/http/Response.cpp.obj
+RegistCenter.exe: CMakeFiles/RegistCenter.dir/libs/http/util.cpp.obj
 RegistCenter.exe: CMakeFiles/RegistCenter.dir/build.make
 RegistCenter.exe: D:/MinGW64/x86_64-w64-mingw32/lib/libws2_32.a
 RegistCenter.exe: CMakeFiles/RegistCenter.dir/linklibs.rsp
 RegistCenter.exe: CMakeFiles/RegistCenter.dir/objects1.rsp
 RegistCenter.exe: CMakeFiles/RegistCenter.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\Administrator\Desktop\RegistCenter\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable RegistCenter.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\Administrator\Desktop\RegistCenter\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable RegistCenter.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\RegistCenter.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

@@ -5,19 +5,18 @@
 #ifndef HTTP_RESPONSE_H
 #define HTTP_RESPONSE_H
 #include <map>
-#include <fcntl.h>
 #include <unistd.h>
-#include <sys/socket.h>
+#include <winsock2.h>
 
 
 class Response {
 private:
-    int conn;
+    SOCKET conn;
     std::map<std::string,std::string> header;
     std::string get_descript(int code);
 
 public:
-    Response(int fd):conn(fd){}
+    Response(SOCKET fd):conn(fd){}
     void set_header(std::string, std::string);
     void write(int,std::string);
     void send_file(std::string path);

@@ -176,6 +176,114 @@ Server.cpp.s:
 	$(MAKE) -f CMakeFiles\RegistCenter.dir\build.make CMakeFiles/RegistCenter.dir/Server.cpp.s
 .PHONY : Server.cpp.s
 
+libs/http/HttpServer.obj: libs/http/HttpServer.cpp.obj
+
+.PHONY : libs/http/HttpServer.obj
+
+# target to build an object file
+libs/http/HttpServer.cpp.obj:
+	$(MAKE) -f CMakeFiles\RegistCenter.dir\build.make CMakeFiles/RegistCenter.dir/libs/http/HttpServer.cpp.obj
+.PHONY : libs/http/HttpServer.cpp.obj
+
+libs/http/HttpServer.i: libs/http/HttpServer.cpp.i
+
+.PHONY : libs/http/HttpServer.i
+
+# target to preprocess a source file
+libs/http/HttpServer.cpp.i:
+	$(MAKE) -f CMakeFiles\RegistCenter.dir\build.make CMakeFiles/RegistCenter.dir/libs/http/HttpServer.cpp.i
+.PHONY : libs/http/HttpServer.cpp.i
+
+libs/http/HttpServer.s: libs/http/HttpServer.cpp.s
+
+.PHONY : libs/http/HttpServer.s
+
+# target to generate assembly for a file
+libs/http/HttpServer.cpp.s:
+	$(MAKE) -f CMakeFiles\RegistCenter.dir\build.make CMakeFiles/RegistCenter.dir/libs/http/HttpServer.cpp.s
+.PHONY : libs/http/HttpServer.cpp.s
+
+libs/http/Request.obj: libs/http/Request.cpp.obj
+
+.PHONY : libs/http/Request.obj
+
+# target to build an object file
+libs/http/Request.cpp.obj:
+	$(MAKE) -f CMakeFiles\RegistCenter.dir\build.make CMakeFiles/RegistCenter.dir/libs/http/Request.cpp.obj
+.PHONY : libs/http/Request.cpp.obj
+
+libs/http/Request.i: libs/http/Request.cpp.i
+
+.PHONY : libs/http/Request.i
+
+# target to preprocess a source file
+libs/http/Request.cpp.i:
+	$(MAKE) -f CMakeFiles\RegistCenter.dir\build.make CMakeFiles/RegistCenter.dir/libs/http/Request.cpp.i
+.PHONY : libs/http/Request.cpp.i
+
+libs/http/Request.s: libs/http/Request.cpp.s
+
+.PHONY : libs/http/Request.s
+
+# target to generate assembly for a file
+libs/http/Request.cpp.s:
+	$(MAKE) -f CMakeFiles\RegistCenter.dir\build.make CMakeFiles/RegistCenter.dir/libs/http/Request.cpp.s
+.PHONY : libs/http/Request.cpp.s
+
+libs/http/Response.obj: libs/http/Response.cpp.obj
+
+.PHONY : libs/http/Response.obj
+
+# target to build an object file
+libs/http/Response.cpp.obj:
+	$(MAKE) -f CMakeFiles\RegistCenter.dir\build.make CMakeFiles/RegistCenter.dir/libs/http/Response.cpp.obj
+.PHONY : libs/http/Response.cpp.obj
+
+libs/http/Response.i: libs/http/Response.cpp.i
+
+.PHONY : libs/http/Response.i
+
+# target to preprocess a source file
+libs/http/Response.cpp.i:
+	$(MAKE) -f CMakeFiles\RegistCenter.dir\build.make CMakeFiles/RegistCenter.dir/libs/http/Response.cpp.i
+.PHONY : libs/http/Response.cpp.i
+
+libs/http/Response.s: libs/http/Response.cpp.s
+
+.PHONY : libs/http/Response.s
+
+# target to generate assembly for a file
+libs/http/Response.cpp.s:
+	$(MAKE) -f CMakeFiles\RegistCenter.dir\build.make CMakeFiles/RegistCenter.dir/libs/http/Response.cpp.s
+.PHONY : libs/http/Response.cpp.s
+
+libs/http/util.obj: libs/http/util.cpp.obj
+
+.PHONY : libs/http/util.obj
+
+# target to build an object file
+libs/http/util.cpp.obj:
+	$(MAKE) -f CMakeFiles\RegistCenter.dir\build.make CMakeFiles/RegistCenter.dir/libs/http/util.cpp.obj
+.PHONY : libs/http/util.cpp.obj
+
+libs/http/util.i: libs/http/util.cpp.i
+
+.PHONY : libs/http/util.i
+
+# target to preprocess a source file
+libs/http/util.cpp.i:
+	$(MAKE) -f CMakeFiles\RegistCenter.dir\build.make CMakeFiles/RegistCenter.dir/libs/http/util.cpp.i
+.PHONY : libs/http/util.cpp.i
+
+libs/http/util.s: libs/http/util.cpp.s
+
+.PHONY : libs/http/util.s
+
+# target to generate assembly for a file
+libs/http/util.cpp.s:
+	$(MAKE) -f CMakeFiles\RegistCenter.dir\build.make CMakeFiles/RegistCenter.dir/libs/http/util.cpp.s
+.PHONY : libs/http/util.cpp.s
+
 main.obj: main.cpp.obj
 
 .PHONY : main.obj
@@ -218,6 +326,18 @@ help:
 	@echo ... Server.obj
 	@echo ... Server.i
 	@echo ... Server.s
+	@echo ... libs/http/HttpServer.obj
+	@echo ... libs/http/HttpServer.i
+	@echo ... libs/http/HttpServer.s
+	@echo ... libs/http/Request.obj
+	@echo ... libs/http/Request.i
+	@echo ... libs/http/Request.s
+	@echo ... libs/http/Response.obj
+	@echo ... libs/http/Response.i
+	@echo ... libs/http/Response.s
+	@echo ... libs/http/util.obj
+	@echo ... libs/http/util.i
+	@echo ... libs/http/util.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s

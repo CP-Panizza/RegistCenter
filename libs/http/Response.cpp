@@ -6,10 +6,11 @@
 #include "util.h"
 #include <string>
 #include <iostream>
-#include <sys/socket.h>
+#include <winsock2.h>
 #include <cstring>
 #include <fstream>
 #include <sstream>
+#include <fcntl.h>
 
 void Response::set_header(std::string key, std::string val) {
     header[key] = val;
@@ -23,7 +24,9 @@ void Response::write(int code, std::string data) {
     }
     buf += "\r\n";
     buf += data;
-    send(conn, buf.c_str(), strlen(buf.c_str()), 0);
+    if(send(conn, buf.c_str(), strlen(buf.c_str()), 0) == -1 ){
+        std::cout << "send data err!" << std::endl;
+    }
 }
 
 std::string Response::get_descript(int code) {
@@ -157,66 +160,55 @@ std::string Response::get_descript(int code) {
 
 
 void Response::send_file(std::string path) {
+    std::string file_data =  read_file(path);
+    int len = file_data.size();
     std::string buf = "HTTP/1.1 " + std::to_string(200) + " " + get_descript(200) + "\r\n";
     buf += ("Content-Type:" + get_file_type(path) + "\r\n");
-    buf += ("Content-Length:" + std::to_string(file_size(path.c_str()))  + "\r\n");
+    buf += ("Content-Length:" + std::to_string(len)  + "\r\n");
     buf += "\r\n";
-    if (send(conn, (void *) buf.c_str(), strlen(buf.c_str()), 0) < 0) {
+    if (send(conn, buf.c_str(), strlen(buf.c_str()), 0) < 0) {
         printf("send head error: %s(errno: %d)\n", strerror(errno), errno);
     }
-
-    int fd = open(path.c_str(), O_RDONLY);
-    if(fd == -1){
-        perror("open err");
-        return;
+    if(file_data != ""){
+        send(conn, file_data.c_str(), len ,0);
     }
-    char buff[4096];
-    int ret = 0;
-    while((ret = read(fd, buff, sizeof(buff))) > 0){
-        send(conn, buff, ret, 0);
-    }
-    if(ret == -1){
-        perror("read err");
-        return;
-    }
-    close(fd);
 }
 
 std::string Response::get_file_type(std::string file) {
     auto type = split(file, ".");
-    if (type.size() != 2) {
+    if (type.size() == 0) {
         return "text/plain;charset=utf-8";
     }
 
-    if (type[1] == "html")
+    if (*(type.end()-1) == "html")
         return "text/html; charset=utf-8";
-    if (type[1] == "jpg")
+    if (*(type.end()-1) == "jpg")
         return "image/jpeg";
-    if (type[1] == "gif")
+    if (*(type.end()-1) == "gif")
         return "image/gif";
-    if (type[1] == "png")
+    if (*(type.end()-1) == "png")
         return "image/png";
-    if (type[1] == "css")
+    if (*(type.end()-1) == "css")
         return "text/css";
-    if (type[1] == "au")
+    if (*(type.end()-1) == "au")
         return "audio/basic";
-    if (type[1] == "wav")
+    if (*(type.end()-1) == "wav")
         return "audio/wav";
-    if (type[1] == "avi")
+    if (*(type.end()-1) == "avi")
         return "video/x-msvideo";
-    if (type[1] == "mov")
+    if (*(type.end()-1) == "mov")
         return "video/quicktime";
-    if (type[1] == "mpeg")
+    if (*(type.end()-1) == "mpeg")
         return "video/mpeg";
-    if (type[1] == "vrml")
+    if (*(type.end()-1) == "vrml")
         return "model/vrml";
-    if (type[1] == "midi")
+    if (*(type.end()-1) == "midi")
         return "audio/midi";
-    if (type[1] == "mp3")
+    if (*(type.end()-1) == "mp3")
         return "audio/mpeg";
-    if (type[1] == "ogg")
+    if (*(type.end()-1) == "ogg")
         return "application/ogg";
-    if (type[1] == "pac")
+    if (*(type.end()-1) == "pac")
         return "application/x-ns-proxy-autoconfig";
 
     return "";
