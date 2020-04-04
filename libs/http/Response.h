@@ -6,7 +6,7 @@
 #define HTTP_RESPONSE_H
 #include <map>
 #include <unistd.h>
-#include <winsock2.h>
+#include "../my_socket.h"
 
 
 class Response {

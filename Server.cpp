@@ -4,7 +4,7 @@
 
 
 #include "Server.h"
-#include <winsock2.h>
+#include "libs/my_socket.h"
 #include <c++/iostream>
 #include <ws2tcpip.h>
 
@@ -60,7 +60,7 @@ void Server::Start(Handler *handler) {
     while (true) {
         int ret;
         fd_set temp_fd;
-        struct timeval t = {0, 0};
+        struct timeval t = {5, 0};
         while (true) {
             FD_ZERO(&temp_fd);
             temp_fd = select_fd;

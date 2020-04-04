@@ -65,7 +65,7 @@ void HttpServer::run() {
     std::cout << "http server started at port:" << std::to_string(m_port) << std::endl;
     int ret;
     fd_set temp_fd;
-    struct timeval t = {0, 0};
+    struct timeval t = {5, 0};
     while (true) {
         FD_ZERO(&temp_fd);
         temp_fd = select_fd;
@@ -168,7 +168,9 @@ void HttpServer::Thread_handle(int conn) {
     } else {
         response.set_header("Content-Type", "text/html");
         response.write(404, "Not found!");
+        disconnect(conn);
     }
+
     disconnect(conn);
 }
 

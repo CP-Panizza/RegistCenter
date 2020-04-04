@@ -6,7 +6,7 @@
 #include "util.h"
 #include <string>
 #include <iostream>
-#include <winsock2.h>
+#include "../my_socket.h"
 #include <cstring>
 #include <fstream>
 #include <sstream>

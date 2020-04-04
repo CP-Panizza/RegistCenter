@@ -122,6 +122,9 @@
 		<Unit filename="C:/Users/Administrator/Desktop/RegistCenter/libs/http/util.h">
 			<Option target="RegistCenter"/>
 		</Unit>
+		<Unit filename="C:/Users/Administrator/Desktop/RegistCenter/libs/my_socket.h">
+			<Option target="RegistCenter"/>
+		</Unit>
 		<Unit filename="C:/Users/Administrator/Desktop/RegistCenter/main.cpp">
 			<Option target="RegistCenter"/>
 		</Unit>

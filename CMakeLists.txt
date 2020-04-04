@@ -13,4 +13,5 @@ add_executable(RegistCenter main.cpp MyHandle.cpp MyHandle.h Server.cpp Server.h
         libs/http/Response.cpp
         libs/http/util.cpp
         libs/http/util.h
-        )
+        libs/my_socket.h
+        libs/my_socket.h)

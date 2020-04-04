@@ -8,7 +8,7 @@
 #include<cstring>
 #include<cerrno>
 #include<sys/types.h>
-#include <winsock2.h>
+#include "libs/my_socket.h"
 #include<unistd.h>
 #include "MyHandle.h"
 #include "libs/http/Response.h"

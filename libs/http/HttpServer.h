@@ -7,7 +7,7 @@
 #include <functional>
 #include <map>
 #include <list>
-#include <winsock2.h>
+#include "../my_socket.h"
 #include "Request.h"
 #include "Response.h"
 
