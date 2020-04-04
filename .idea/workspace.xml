@@ -12,20 +12,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3055e8e7-dc85-4757-b63b-d3b327e781ba" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/libs/my_socket.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MyHandle.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/MyHandle.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyHandle.h" beforeDir="false" afterPath="$PROJECT_DIR$/MyHandle.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Server.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Server.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server.h" beforeDir="false" afterPath="$PROJECT_DIR$/Server.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/RegistCenter.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/RegistCenter.dir/CXX.includecache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/RegistCenter.dir/depend.internal" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/RegistCenter.dir/depend.internal" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/RegistCenter.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/RegistCenter.dir/depend.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/RegistCenter.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/RegistCenter.cbp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/http/HttpServer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/libs/http/HttpServer.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/http/HttpServer.h" beforeDir="false" afterPath="$PROJECT_DIR$/libs/http/HttpServer.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/http/Response.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/libs/http/Response.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/http/Response.h" beforeDir="false" afterPath="$PROJECT_DIR$/libs/http/Response.h" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -67,10 +55,10 @@
           <entry key="condition_variable" value="2" />
           <entry key="cpp" value="47" />
           <entry key="cstdio" value="1" />
-          <entry key="h" value="61" />
-          <entry key="hpp" value="5" />
+          <entry key="h" value="62" />
+          <entry key="hpp" value="6" />
           <entry key="list" value="1" />
-          <entry key="tcc" value="2" />
+          <entry key="tcc" value="3" />
           <entry key="thread" value="2" />
           <entry key="txt" value="19" />
         </counts>
@@ -79,13 +67,13 @@
         <counts>
           <entry key="CMakeLists.txt" value="11" />
           <entry key="Makefile" value="1" />
-          <entry key="ObjectiveC" value="124" />
+          <entry key="ObjectiveC" value="127" />
           <entry key="PLAIN_TEXT" value="9" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="cpp" value="3791" />
+          <entry key="cpp" value="4307" />
           <entry key="h" value="836" />
           <entry key="hpp" value="387" />
           <entry key="txt" value="184" />
@@ -95,7 +83,7 @@
         <counts>
           <entry key="CMakeLists.txt" value="124" />
           <entry key="Doxygen file" value="2" />
-          <entry key="ObjectiveC" value="5012" />
+          <entry key="ObjectiveC" value="5528" />
           <entry key="PLAIN_TEXT" value="60" />
         </counts>
       </usages-collector>
@@ -103,11 +91,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/MyHandle.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="395">
-              <caret line="34" column="28" selection-start-line="34" selection-start-column="28" selection-end-line="34" selection-end-column="28" />
+            <state relative-caret-position="272">
+              <caret line="273" column="8" selection-start-line="273" selection-start-column="8" selection-end-line="273" selection-end-column="8" />
               <folding>
                 <element signature="e#49#65#0" expanded="true" />
               </folding>
@@ -115,25 +103,13 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/libs/http/HttpServer.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="160">
-              <caret line="111" selection-start-line="111" selection-end-line="111" />
-              <folding>
-                <element signature="e#50#73#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/libs/http/Response.h">
+        <entry file="file://$PROJECT_DIR$/MyHandle.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="28">
-              <caret line="10" selection-start-line="10" selection-end-line="10" />
+            <state relative-caret-position="56">
+              <caret line="23" column="7" selection-start-line="23" selection-start-column="7" selection-end-line="23" selection-end-column="7" />
               <folding>
-                <element signature="e#85#99#0" expanded="true" />
+                <element signature="e#113#128#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -142,8 +118,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="365">
-              <caret line="22" column="5" lean-forward="true" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
+            <state relative-caret-position="117">
+              <caret line="14" column="21" lean-forward="true" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
               <folding>
                 <element signature="e#1#20#0" expanded="true" />
               </folding>
@@ -154,20 +130,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Server.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="160">
-              <caret line="62" column="29" selection-start-line="62" selection-start-column="29" selection-end-line="62" selection-end-column="29" />
+            <state relative-caret-position="252">
+              <caret line="70" lean-forward="true" selection-start-line="70" selection-end-line="70" />
               <folding>
                 <element signature="e#49#68#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/libs/my_socket.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="224">
-              <caret line="8" column="6" lean-forward="true" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
             </state>
           </provider>
         </entry>
@@ -196,7 +163,6 @@
         <option value="$PROJECT_DIR$/main.cpp" />
         <option value="$PROJECT_DIR$/cmake-build-debug/config.txt" />
         <option value="$PROJECT_DIR$/MyHandle.h" />
-        <option value="$PROJECT_DIR$/MyHandle.cpp" />
         <option value="$PROJECT_DIR$/Server.h" />
         <option value="$PROJECT_DIR$/libs/http/HttpServer.h" />
         <option value="$PROJECT_DIR$/libs/http/Response.cpp" />
@@ -205,6 +171,7 @@
         <option value="$PROJECT_DIR$/libs/my_socket.h" />
         <option value="$PROJECT_DIR$/libs/http/HttpServer.cpp" />
         <option value="$PROJECT_DIR$/Server.cpp" />
+        <option value="$PROJECT_DIR$/MyHandle.cpp" />
       </list>
     </option>
   </component>
@@ -314,12 +281,12 @@
       <workItem from="1585917937512" duration="93000" />
       <workItem from="1585969979649" duration="362000" />
       <workItem from="1585977095333" duration="8670000" />
-      <workItem from="1585996984959" duration="1219000" />
+      <workItem from="1585996984959" duration="5235000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="52676000" />
+    <option name="totallyTimeSpent" value="56692000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="25" width="1938" height="1064" extended-state="6" />
@@ -331,12 +298,12 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.36222222" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.4" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Messages" order="8" weight="0.40666667" />
+      <window_info active="true" anchor="bottom" id="Messages" order="8" visible="true" weight="0.40666667" />
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.4377778" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="11" />
@@ -357,9 +324,9 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/libs/http/HttpServer.cpp</url>
-          <line>111</line>
-          <option name="timeStamp" value="4" />
+          <url>file://$PROJECT_DIR$/MyHandle.cpp</url>
+          <line>266</line>
+          <option name="timeStamp" value="10" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -526,13 +493,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://D:/MinGW64/x86_64-w64-mingw32/include/c++/bits/list.tcc">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="457">
-          <caret line="442" column="18" selection-start-line="442" selection-start-column="10" selection-end-line="442" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/libs/MyHttp/Request.h" />
     <entry file="file://$PROJECT_DIR$/libs/MyHttp/HttpServer.cpp" />
     <entry file="file://D:/MinGW64/x86_64-w64-mingw32/include/c++/cstdio">
@@ -547,13 +507,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/RWLock.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="452">
-          <caret line="19" column="5" lean-forward="true" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://D:/MinGW64/x86_64-w64-mingw32/include/psdk_inc/_fd_types.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="241">
@@ -565,13 +518,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="569">
           <caret line="994" column="53" selection-start-line="994" selection-start-column="53" selection-end-line="994" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MyHandle.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="56">
-          <caret line="13" column="27" lean-forward="true" selection-start-line="13" selection-start-column="27" selection-end-line="13" selection-end-column="27" />
         </state>
       </provider>
     </entry>
@@ -643,27 +589,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/libs/my_socket.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="8" column="6" lean-forward="true" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Server.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="158">
           <caret line="9" selection-start-line="9" selection-end-line="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/libs/http/Response.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="28">
-          <caret line="10" selection-start-line="10" selection-end-line="10" />
-          <folding>
-            <element signature="e#85#99#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -674,42 +603,83 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MyHandle.cpp">
+    <entry file="file://$PROJECT_DIR$/libs/http/Response.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="395">
-          <caret line="34" column="28" selection-start-line="34" selection-start-column="28" selection-end-line="34" selection-end-column="28" />
+        <state relative-caret-position="197">
+          <caret line="10" selection-start-line="10" selection-end-line="10" />
           <folding>
-            <element signature="e#49#65#0" expanded="true" />
+            <element signature="e#85#99#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/libs/my_socket.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="224">
+          <caret line="8" column="6" lean-forward="true" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/libs/http/HttpServer.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1652">
+          <caret line="77" lean-forward="true" selection-start-line="77" selection-end-line="77" />
+          <folding>
+            <element signature="e#50#73#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Server.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="62" column="29" selection-start-line="62" selection-start-column="29" selection-end-line="62" selection-end-column="29" />
+        <state relative-caret-position="252">
+          <caret line="70" lean-forward="true" selection-start-line="70" selection-end-line="70" />
           <folding>
             <element signature="e#49#68#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://D:/MinGW64/x86_64-w64-mingw32/include/c++/bits/list.tcc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="284">
+          <caret line="442" column="18" selection-start-line="442" selection-start-column="10" selection-end-line="442" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/main.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="365">
-          <caret line="22" column="5" lean-forward="true" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
+        <state relative-caret-position="117">
+          <caret line="14" column="21" lean-forward="true" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
           <folding>
             <element signature="e#1#20#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/libs/http/HttpServer.cpp">
+    <entry file="file://$PROJECT_DIR$/RWLock.hpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="111" selection-start-line="111" selection-end-line="111" />
+        <state relative-caret-position="396">
+          <caret line="34" column="26" lean-forward="true" selection-start-line="34" selection-start-column="26" selection-end-line="34" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyHandle.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="56">
+          <caret line="23" column="7" selection-start-line="23" selection-start-column="7" selection-end-line="23" selection-end-column="7" />
           <folding>
-            <element signature="e#50#73#0" expanded="true" />
+            <element signature="e#113#128#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyHandle.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="273" column="8" selection-start-line="273" selection-start-column="8" selection-end-line="273" selection-end-column="8" />
+          <folding>
+            <element signature="e#49#65#0" expanded="true" />
           </folding>
         </state>
       </provider>

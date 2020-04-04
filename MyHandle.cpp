@@ -268,15 +268,39 @@ void MyHandle::HttpAddServer(Request req, Response *resp) {
     if(doc.Parse(req.body.c_str()).HasParseError()){
         resp->write(200, "{\"success\":false}");
         return;
+    } else if(doc.HasMember("servername") && doc.HasMember("ip") && doc.HasMember("proportion")){
+        std::string server_name = doc["servername"].GetString();
+        std::string ip = doc["ip"].GetString();
+        int proportion = atoi(doc["proportion"].GetString());
+        lock.lockWrite();
+        if(server_list_map.count(server_name)){
+            server_list_map[server_name]->push_back(ServerInfo{ip, proportion});
+        } else {
+            auto li = new list<ServerInfo>;
+            li->push_back(ServerInfo{ip, proportion});
+            server_list_map[server_name] = li;
+        }
+        lock.unlockWrite();
+        resp->write(200, "{\"success\":true}");
     }
 }
 
 void MyHandle::HttpDelServer(Request req, Response *resp) {
-    rapidjson::Document doc;
-    if(doc.Parse(req.body.c_str()).HasParseError()){
-        resp->write(200, "{\"success\":false}");
+    std::string server_name;
+    std::string server_ip;
+    if(req.params.count("server") && req.params.count("ip")){
+        server_name = req.params["server"];
+        server_ip = req.params["ip"];
+    } else {
+        resp->write(404, "{\"success\":false}");
         return;
     }
+    lock.lockWrite();
+    if(server_list_map.count(server_name)){
+        server_list_map[server_name]->remove_if([=](ServerInfo n) { return n.ip == server_ip; });
+    }
+    lock.unlockWrite();
+    resp->write(200, "{\"success\":true}");
 }
 
 void MyHandle::HttpGetAllServer(Request req, Response *resp) {
@@ -298,8 +322,10 @@ void MyHandle::HttpGetAllServer(Request req, Response *resp) {
             w.EndObject();
         }
     }
+    this->lock.unlockRead();
     w.EndArray();
     w.EndObject();
+
     std::string json_data = s.GetString();
     resp->set_header("Content-Type", "application/json");
     resp->write(200, json_data);

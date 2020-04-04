@@ -57,30 +57,28 @@ Server::~Server() {
 
 void Server::Start(Handler *handler) {
     printf("======waiting for client's request======\n");
+    int ret;
+    fd_set temp_fd;
+    struct timeval t = {5, 0};
     while (true) {
-        int ret;
-        fd_set temp_fd;
-        struct timeval t = {5, 0};
-        while (true) {
-            FD_ZERO(&temp_fd);
-            temp_fd = select_fd;
-            ret = select(0, &temp_fd, NULL, NULL, &t);//最后一个参数为NULL，一直等待，直到有数据过来
-            if (ret == SOCKET_ERROR) {
-                printf("%s", "select err!");
-                continue;
-            }
+        FD_ZERO(&temp_fd);
+        temp_fd = select_fd;
+        ret = select(0, &temp_fd, NULL, NULL, &t);//最后一个参数为NULL，一直等待，直到有数据过来
+        if (ret == SOCKET_ERROR) {
+            printf("%s", "select err!");
+            continue;
+        }
 
-            for (int i = 0; i < temp_fd.fd_count; ++i) {
-                //获取到套接字
-                SOCKET s = temp_fd.fd_array[i];
-                if (FD_ISSET(s, &temp_fd)) {
-                    //接收到客户端的链接
-                    if (s == socket_fd) {
-                        do_accept();
-                    } else {
-                        handler->Server(s, clients[s]);
-                        disconnect(s);
-                    }
+        for (int i = 0; i < temp_fd.fd_count; ++i) {
+            //获取到套接字
+            SOCKET s = temp_fd.fd_array[i];
+            if (FD_ISSET(s, &temp_fd)) {
+                //接收到客户端的链接
+                if (s == socket_fd) {
+                    do_accept();
+                } else {
+                    handler->Server(s, clients[s]);
+                    disconnect(s);
                 }
             }
         }
@@ -91,7 +89,7 @@ void Server::Start(Handler *handler) {
 void Server::do_accept() {
     struct sockaddr_in addrClient;
     socklen_t len = sizeof(struct sockaddr_in);
-    SOCKET c = accept(socket_fd, (struct sockaddr *)&addrClient, &len);
+    SOCKET c = accept(socket_fd, (struct sockaddr *) &addrClient, &len);
     if (c == INVALID_SOCKET) {
         std::cout << "accept err!" << std::endl;
         return;
