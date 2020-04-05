@@ -22,19 +22,14 @@ using namespace std;
 #define CLIENT_PORT 8528
 #define HTTP_PORT 8529
 struct ServerInfo{
+    ServerInfo(string _ip, int _proportion):ip(_ip), proportion(_proportion){}
     string ip;
     int proportion;
 };
 
 
 class MyHandle : public Handler {
-private:
-    string http_username;
-    string http_pwd;
-    RWLock lock;
-    int heart_check_time;
-    HttpServer *http_server;
-    map<string, list<ServerInfo> *> server_list_map;
+
 public:
     MyHandle(string username, string pwd);
     ~MyHandle();
@@ -48,9 +43,19 @@ public:
     void HttpAddServer(Request req, Response *resp);
     void HttpDelServer(Request req, Response *resp);
     void HttpGetAllServer(Request req, Response *resp);
+    void HttpChangeServer(Request req, Response *resp);
+
+private:
+    typedef map<string, list<ServerInfo *> *> Server_map;
+    string http_username;
+    string http_pwd;
+    RWLock lock;
+    int heart_check_time;
+    HttpServer *http_server;
+    Server_map server_list_map;
 };
 
 bool count(const list<string> &l, string target);
-bool count(const list<ServerInfo> &l, string target);
+bool count(const list<ServerInfo*> &l, string target);
 
 #endif //CPP_TCP_DEMO_MYHANDLE_H

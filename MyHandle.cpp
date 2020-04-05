@@ -21,18 +21,20 @@
 using namespace rapidjson;
 using namespace std;
 
-MyHandle::MyHandle(string username, string pwd):http_username(username), http_pwd(pwd) {
+MyHandle::MyHandle(string username, string pwd) : http_username(username), http_pwd(pwd) {
     http_server = new HttpServer(HTTP_PORT);
     http_server->set_static_path("\\resource");
-    auto login = std::bind(&MyHandle::HttpLogin, this, std::placeholders::_1,std::placeholders::_2);
-    auto get_all = std::bind(&MyHandle::HttpGetAllServer, this, std::placeholders::_1,std::placeholders::_2);
-    auto del_server = std::bind(&MyHandle::HttpDelServer, this, std::placeholders::_1,std::placeholders::_2);
-    auto add_server = std::bind(&MyHandle::HttpAddServer, this, std::placeholders::_1,std::placeholders::_2);
+    auto login = std::bind(&MyHandle::HttpLogin, this, std::placeholders::_1, std::placeholders::_2);
+    auto get_all = std::bind(&MyHandle::HttpGetAllServer, this, std::placeholders::_1, std::placeholders::_2);
+    auto del_server = std::bind(&MyHandle::HttpDelServer, this, std::placeholders::_1, std::placeholders::_2);
+    auto add_server = std::bind(&MyHandle::HttpAddServer, this, std::placeholders::_1, std::placeholders::_2);
+    auto change_server = std::bind(&MyHandle::HttpChangeServer, this, std::placeholders::_1, std::placeholders::_2);
     http_server->H("POST", "/login", login);
     http_server->H("GET", "/getAll", get_all);
     http_server->H("DELETE", "/del", del_server);
     http_server->H("POST", "/add", add_server);
-    thread t(&HttpServer::run,http_server);
+    http_server->H("POST", "/change", change_server);
+    thread t(&HttpServer::run, http_server);
     t.detach();
 }
 
@@ -74,11 +76,11 @@ void MyHandle::Server(int connfd, std::string remoteIp) {
             string serName(serverList[i].GetString());
             lock.lockWrite();
             if (server_list_map.count(serName)) {
-                list<ServerInfo> *temp = server_list_map[serName];
-                temp->push_front(ServerInfo{remoteIp, proportion});
+                list<ServerInfo *> *temp = server_list_map[serName];
+                temp->push_front(new ServerInfo(remoteIp, proportion));
             } else {
-                auto *templist = new list<ServerInfo>;
-                templist->push_front(ServerInfo{remoteIp, proportion});
+                auto *templist = new list<ServerInfo*>;
+                templist->push_front(new ServerInfo(remoteIp, proportion));
                 server_list_map[serName] = templist;
             }
             lock.unlockWrite();
@@ -95,7 +97,7 @@ void MyHandle::Server(int connfd, std::string remoteIp) {
         rapidjson::StringBuffer s;
         rapidjson::Writer<rapidjson::StringBuffer> writer(s);
 
-        map<string, list<ServerInfo> *> temp_map;
+        map<string, list<ServerInfo*> *> temp_map;
         auto serviceList = d["ServiceList"].GetArray();
 
         for (auto it = serviceList.Begin(); it != serviceList.End(); it++) {
@@ -104,7 +106,7 @@ void MyHandle::Server(int connfd, std::string remoteIp) {
             if (server_list_map.count(ser_name)) {
                 temp_map[ser_name] = server_list_map[ser_name];
             } else {
-                list<ServerInfo> tmep_list;
+                list<ServerInfo*> tmep_list;
                 temp_map[ser_name] = &tmep_list;
             }
             lock.unlockRead();
@@ -124,9 +126,9 @@ void MyHandle::Server(int connfd, std::string remoteIp) {
             for (auto &ip : *key_val.second) {
                 writer.StartObject();
                 writer.Key("Ip");
-                writer.String(ip.ip.c_str());
+                writer.String(ip->ip.c_str());
                 writer.Key("Proportion");
-                writer.Int(ip.proportion);
+                writer.Int(ip->proportion);
                 writer.EndObject();
             }
             writer.EndArray();
@@ -177,9 +179,9 @@ bool count(const list<string> &l, string target) {
 }
 
 
-bool count(const list<ServerInfo> &l, string target) {
+bool count(const list<ServerInfo *> &l, string target) {
     for (auto x : l) {
-        if (x.ip == target)
+        if (x->ip == target)
             return true;
     }
     return false;
@@ -226,9 +228,16 @@ bool MyHandle::DoCheck(const string &ip) {
 void MyHandle::DeleteAddr(string ip) {
     list<string> emptyListName;
 
+    this->lock.lockWrite();
     for (auto x : server_list_map) {
         if (count(*(x.second), ip)) {
-            x.second->remove_if([=](ServerInfo n) { return n.ip == ip; });
+            x.second->remove_if([=](ServerInfo *s){
+                if(s->ip == ip){
+                    delete s;
+                    return true;
+                }
+                return false;
+            });
             if (x.second->empty()) {
                 emptyListName.push_back(x.first);
             }
@@ -236,8 +245,10 @@ void MyHandle::DeleteAddr(string ip) {
     }
 
     for (auto x : emptyListName) {
+        delete server_list_map[x];
         server_list_map.erase(x);
     }
+    this->lock.unlockWrite();
 }
 
 
@@ -246,8 +257,8 @@ void MyHandle::PreCheck() {
     this->lock.lockRead();
     for (auto l : server_list_map) {
         for (auto ip : *(l.second)) {
-            if (!count(addrs, ip.ip)) {
-                addrs.push_front(ip.ip);
+            if (!count(addrs, ip->ip)) {
+                addrs.push_front(ip->ip);
             }
         }
     }
@@ -256,28 +267,26 @@ void MyHandle::PreCheck() {
     for (auto x : addrs) {
         string ip = x.substr(0, x.find(":"));
         if (!DoCheck(ip)) {
-            this->lock.lockWrite();
             DeleteAddr(x);
-            this->lock.unlockWrite();
         }
     }
 }
 
 void MyHandle::HttpAddServer(Request req, Response *resp) {
     rapidjson::Document doc;
-    if(doc.Parse(req.body.c_str()).HasParseError()){
+    if (doc.Parse(req.body.c_str()).HasParseError()) {
         resp->write(200, "{\"success\":false}");
         return;
-    } else if(doc.HasMember("servername") && doc.HasMember("ip") && doc.HasMember("proportion")){
+    } else if (doc.HasMember("servername") && doc.HasMember("ip") && doc.HasMember("proportion")) {
         std::string server_name = doc["servername"].GetString();
         std::string ip = doc["ip"].GetString();
         int proportion = atoi(doc["proportion"].GetString());
         lock.lockWrite();
-        if(server_list_map.count(server_name)){
-            server_list_map[server_name]->push_back(ServerInfo{ip, proportion});
+        if (server_list_map.count(server_name)) {
+            server_list_map[server_name]->push_back(new ServerInfo(ip, proportion));
         } else {
-            auto li = new list<ServerInfo>;
-            li->push_back(ServerInfo{ip, proportion});
+            auto li = new list<ServerInfo *>;
+            li->push_back(new ServerInfo(ip, proportion));
             server_list_map[server_name] = li;
         }
         lock.unlockWrite();
@@ -288,7 +297,7 @@ void MyHandle::HttpAddServer(Request req, Response *resp) {
 void MyHandle::HttpDelServer(Request req, Response *resp) {
     std::string server_name;
     std::string server_ip;
-    if(req.params.count("server") && req.params.count("ip")){
+    if (req.params.count("server") && req.params.count("ip")) {
         server_name = req.params["server"];
         server_ip = req.params["ip"];
     } else {
@@ -296,8 +305,14 @@ void MyHandle::HttpDelServer(Request req, Response *resp) {
         return;
     }
     lock.lockWrite();
-    if(server_list_map.count(server_name)){
-        server_list_map[server_name]->remove_if([=](ServerInfo n) { return n.ip == server_ip; });
+    if (server_list_map.count(server_name)) {
+        server_list_map[server_name]->remove_if([=](ServerInfo* s) {
+            if(s->ip == server_ip){
+                delete s;
+                return true;
+            }
+            return false;
+        });
     }
     lock.unlockWrite();
     resp->write(200, "{\"success\":true}");
@@ -310,15 +325,15 @@ void MyHandle::HttpGetAllServer(Request req, Response *resp) {
     w.Key("data");
     w.StartArray();
     this->lock.lockRead();
-    for(auto l :server_list_map){
-        for(auto x : *l.second){
+    for (auto l :server_list_map) {
+        for (auto x : *l.second) {
             w.StartObject();
             w.Key("server");
             w.String(l.first.c_str());
             w.Key("ip");
-            w.String(x.ip.c_str());
+            w.String(x->ip.c_str());
             w.Key("proportion");
-            w.Int(x.proportion);
+            w.Int(x->proportion);
             w.EndObject();
         }
     }
@@ -331,16 +346,17 @@ void MyHandle::HttpGetAllServer(Request req, Response *resp) {
     resp->write(200, json_data);
 }
 
+
 void MyHandle::HttpLogin(Request req, Response *resp) {
     rapidjson::Document doc;
-    if(doc.Parse(req.body.c_str()).HasParseError()){
+    if (doc.Parse(req.body.c_str()).HasParseError()) {
         resp->write(200, "{\"success\":false}");
         return;
     } else {
-        if(doc.HasMember("username") && doc.HasMember("password")){
+        if (doc.HasMember("username") && doc.HasMember("password")) {
             std::string pass = doc["username"].GetString();
             std::string pwd = doc["password"].GetString();
-            if(pass == http_username && pwd == http_pwd){
+            if (pass == http_username && pwd == http_pwd) {
                 resp->write(200, "{\"success\":true}");
                 return;
             } else {
@@ -349,6 +365,41 @@ void MyHandle::HttpLogin(Request req, Response *resp) {
             }
         } else {
             resp->write(200, "{\"success\":false}");
+        }
+    }
+}
+
+void MyHandle::HttpChangeServer(Request req, Response *resp) {
+    rapidjson::Document doc;
+    if (doc.Parse(req.body.c_str()).HasParseError()) {
+        resp->write(200, "{\"success\":false}");
+        return;
+    } else {
+        if (doc.HasMember("newServerName")
+            && doc.HasMember("newIp")
+            && doc.HasMember("newProportion")
+            && doc.HasMember("oldServerName")
+            && doc.HasMember("oldIp")
+            && doc.HasMember("oldProportion")) {
+            std::string newServerName = doc["newServerName"].GetString();
+            std::string newIp = doc["newIp"].GetString();
+            int newProportion = atoi(doc["newProportion"].GetString());
+            std::string oldServerName = doc["oldServerName"].GetString();
+            std::string oldIp = doc["oldIp"].GetString();
+            int oldProportion = atoi(doc["oldProportion"].GetString());
+            lock.lockWrite();
+            if(server_list_map.count(oldServerName)){
+                for(ServerInfo *x : *server_list_map[oldServerName]){
+                    if(x->ip == oldIp && x->proportion == oldProportion){
+                        x->ip = newIp;
+                        x->proportion = newProportion;
+                        break;
+                    }
+                }
+            }
+            lock.unlockWrite();
+            resp->write(200, "{\"success\":true}");
+
         }
     }
 }
