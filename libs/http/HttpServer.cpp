@@ -77,14 +77,12 @@ void HttpServer::run() {
         }
 
         for (int i = 0; i < temp_fd.fd_count; ++i) {
-            //获取到套接字
-            SOCKET s = temp_fd.fd_array[i];
-            if (FD_ISSET(s, &temp_fd)) {
+            if (FD_ISSET(temp_fd.fd_array[i], &temp_fd)) {
                 //接收到客户端的链接
-                if (s == socket_fd) {
+                if (temp_fd.fd_array[i] == socket_fd) {
                     do_accept();
                 } else {
-                    Thread_handle(s);
+                    Thread_handle(temp_fd.fd_array[i]);
                 }
             }
         }

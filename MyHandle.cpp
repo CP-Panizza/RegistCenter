@@ -280,7 +280,13 @@ void MyHandle::HttpAddServer(Request req, Response *resp) {
     } else if (doc.HasMember("servername") && doc.HasMember("ip") && doc.HasMember("proportion")) {
         std::string server_name = doc["servername"].GetString();
         std::string ip = doc["ip"].GetString();
-        int proportion = atoi(doc["proportion"].GetString());
+        int proportion;
+        if(doc["proportion"].IsInt()){
+            proportion = doc["proportion"].GetInt();
+        }else if(doc["proportion"].IsString()){
+            proportion = atoi(doc["proportion"].GetString());
+        }
+
         lock.lockWrite();
         if (server_list_map.count(server_name)) {
             server_list_map[server_name]->push_back(new ServerInfo(ip, proportion));
@@ -383,10 +389,20 @@ void MyHandle::HttpChangeServer(Request req, Response *resp) {
             && doc.HasMember("oldProportion")) {
             std::string newServerName = doc["newServerName"].GetString();
             std::string newIp = doc["newIp"].GetString();
-            int newProportion = atoi(doc["newProportion"].GetString());
+            int newProportion;
+            if(doc["newProportion"].IsInt()){
+                newProportion = doc["newProportion"].GetInt();
+            }else if(doc["newProportion"].IsString()){
+                newProportion = atoi(doc["newProportion"].GetString());
+            }
+            int oldProportion;
+            if(doc["oldProportion"].IsInt()){
+                oldProportion = doc["oldProportion"].GetInt();
+            }else if(doc["oldProportion"].IsString()){
+                oldProportion = atoi(doc["oldProportion"].GetString());
+            }
             std::string oldServerName = doc["oldServerName"].GetString();
             std::string oldIp = doc["oldIp"].GetString();
-            int oldProportion = atoi(doc["oldProportion"].GetString());
             lock.lockWrite();
             if(server_list_map.count(oldServerName)){
                 for(ServerInfo *x : *server_list_map[oldServerName]){
