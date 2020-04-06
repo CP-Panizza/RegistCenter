@@ -10,7 +10,7 @@
 #include <vector>
 #include <fstream>
 #include <sstream>
-#include <c++/map>
+#include <map>
 
 std::vector<std::string> split(std::string str, std::string pattern);
 bool contain(std::string str, std::string target);

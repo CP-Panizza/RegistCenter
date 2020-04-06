@@ -11,12 +11,20 @@
 
 class Response {
 private:
+#ifdef _WIN64
     SOCKET conn;
+#else
+    int conn;
+#endif
     std::map<std::string,std::string> header;
     std::string get_descript(int code);
 
 public:
+#ifdef _WIN64
     Response(SOCKET fd):conn(fd){}
+#else
+    Response(int fd):conn(fd){}
+#endif
     void set_header(std::string, std::string);
     void write(int,std::string);
     void send_file(std::string path);

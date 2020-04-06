@@ -6,8 +6,8 @@
 #include <dirent.h>
 #include <sys/stat.h>
 #include <fstream>
-#include <c++/iostream>
-#include <c++/map>
+#include <iostream>
+#include <map>
 
 std::vector<std::string> split(std::string str, std::string pattern) {
     std::string::size_type pos;

@@ -5,8 +5,8 @@
 #ifndef RWLOCK_HPP
 #define RWLOCK_HPP
 
-#include <c++/mutex>
-#include <c++/condition_variable>
+#include <mutex>
+#include <condition_variable>
 
 class RWLock {
 public:

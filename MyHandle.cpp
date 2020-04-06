@@ -17,13 +17,20 @@
 #include "libs/rapidjson/document.h"
 #include "libs/rapidjson/writer.h"
 #include "libs/rapidjson/stringbuffer.h"
+#ifdef _WIN64
 
+#else
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+
+#endif
 using namespace rapidjson;
 using namespace std;
 
 MyHandle::MyHandle(string username, string pwd) : http_username(username), http_pwd(pwd) {
     http_server = new HttpServer(HTTP_PORT);
-    http_server->set_static_path("\\resource");
+    http_server->set_static_path("/resource");
     auto login = std::bind(&MyHandle::HttpLogin, this, std::placeholders::_1, std::placeholders::_2);
     auto get_all = std::bind(&MyHandle::HttpGetAllServer, this, std::placeholders::_1, std::placeholders::_2);
     auto del_server = std::bind(&MyHandle::HttpDelServer, this, std::placeholders::_1, std::placeholders::_2);
@@ -189,7 +196,11 @@ bool count(const list<ServerInfo *> &l, string target) {
 
 
 bool MyHandle::DoCheck(const string &ip) {
+#ifdef _WIN64
     SOCKET sockfd, n;
+#else
+    int sockfd, n;
+#endif
     char recvline[100], sendline[] = "CHECK";
     struct sockaddr_in servaddr;
     if ((sockfd = socket(AF_INET, SOCK_STREAM, 0)) < 0) {

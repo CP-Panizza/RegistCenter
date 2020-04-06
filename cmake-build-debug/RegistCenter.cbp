@@ -8,127 +8,131 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="C:/Users/Administrator/Desktop/RegistCenter/cmake-build-debug"/>
+				<Option working_dir="/opt/cpp/temp_regist_cemter/RegistCenter/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="D:/MinGW64/bin/mingw32-make.exe -f &quot;C:/Users/Administrator/Desktop/RegistCenter/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="D:/MinGW64/bin/mingw32-make.exe -f &quot;C:/Users/Administrator/Desktop/RegistCenter/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="D:/MinGW64/bin/mingw32-make.exe -f &quot;C:/Users/Administrator/Desktop/RegistCenter/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="D:/MinGW64/bin/mingw32-make.exe -f &quot;C:/Users/Administrator/Desktop/RegistCenter/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="RegistCenter">
-				<Option output="C:/Users/Administrator/Desktop/RegistCenter/cmake-build-debug/RegistCenter.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="C:/Users/Administrator/Desktop/RegistCenter/cmake-build-debug"/>
-				<Option object_output="./"/>
-				<Option type="1"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="D:/MinGW64/bin/../lib/gcc/x86_64-w64-mingw32/4.9.2/include"/>
-					<Add directory="D:/MinGW64/bin/../lib/gcc/x86_64-w64-mingw32/4.9.2/include-fixed"/>
-					<Add directory="D:/MinGW64/bin/../lib/gcc/x86_64-w64-mingw32/4.9.2/../../../../x86_64-w64-mingw32/include"/>
-					<Add directory="D:/MinGW64/lib/gcc/../../x86_64-w64-mingw32/include/c++"/>
-					<Add directory="D:/MinGW64/lib/gcc/../../x86_64-w64-mingw32/include/c++/x86_64-w64-mingw32"/>
-					<Add directory="D:/MinGW64/lib/gcc/../../x86_64-w64-mingw32/include/c++/backward"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="D:/MinGW64/bin/mingw32-make.exe -f &quot;C:/Users/Administrator/Desktop/RegistCenter/cmake-build-debug/Makefile&quot;  VERBOSE=1 RegistCenter"/>
-					<CompileFile command="D:/MinGW64/bin/mingw32-make.exe -f &quot;C:/Users/Administrator/Desktop/RegistCenter/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="D:/MinGW64/bin/mingw32-make.exe -f &quot;C:/Users/Administrator/Desktop/RegistCenter/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="D:/MinGW64/bin/mingw32-make.exe -f &quot;C:/Users/Administrator/Desktop/RegistCenter/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="RegistCenter/fast">
-				<Option output="C:/Users/Administrator/Desktop/RegistCenter/cmake-build-debug/RegistCenter.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="C:/Users/Administrator/Desktop/RegistCenter/cmake-build-debug"/>
-				<Option object_output="./"/>
-				<Option type="1"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="D:/MinGW64/bin/../lib/gcc/x86_64-w64-mingw32/4.9.2/include"/>
-					<Add directory="D:/MinGW64/bin/../lib/gcc/x86_64-w64-mingw32/4.9.2/include-fixed"/>
-					<Add directory="D:/MinGW64/bin/../lib/gcc/x86_64-w64-mingw32/4.9.2/../../../../x86_64-w64-mingw32/include"/>
-					<Add directory="D:/MinGW64/lib/gcc/../../x86_64-w64-mingw32/include/c++"/>
-					<Add directory="D:/MinGW64/lib/gcc/../../x86_64-w64-mingw32/include/c++/x86_64-w64-mingw32"/>
-					<Add directory="D:/MinGW64/lib/gcc/../../x86_64-w64-mingw32/include/c++/backward"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="D:/MinGW64/bin/mingw32-make.exe -f &quot;C:/Users/Administrator/Desktop/RegistCenter/cmake-build-debug/Makefile&quot;  VERBOSE=1 RegistCenter/fast"/>
-					<CompileFile command="D:/MinGW64/bin/mingw32-make.exe -f &quot;C:/Users/Administrator/Desktop/RegistCenter/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="D:/MinGW64/bin/mingw32-make.exe -f &quot;C:/Users/Administrator/Desktop/RegistCenter/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="D:/MinGW64/bin/mingw32-make.exe -f &quot;C:/Users/Administrator/Desktop/RegistCenter/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="edit_cache">
-				<Option working_dir="C:/Users/Administrator/Desktop/RegistCenter/cmake-build-debug"/>
-				<Option type="4"/>
-				<MakeCommands>
-					<Build command="D:/MinGW64/bin/mingw32-make.exe -f &quot;C:/Users/Administrator/Desktop/RegistCenter/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="D:/MinGW64/bin/mingw32-make.exe -f &quot;C:/Users/Administrator/Desktop/RegistCenter/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="D:/MinGW64/bin/mingw32-make.exe -f &quot;C:/Users/Administrator/Desktop/RegistCenter/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="D:/MinGW64/bin/mingw32-make.exe -f &quot;C:/Users/Administrator/Desktop/RegistCenter/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/opt/cpp/temp_regist_cemter/RegistCenter/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/opt/cpp/temp_regist_cemter/RegistCenter/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/opt/cpp/temp_regist_cemter/RegistCenter/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/opt/cpp/temp_regist_cemter/RegistCenter/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="C:/Users/Administrator/Desktop/RegistCenter/cmake-build-debug"/>
+				<Option working_dir="/opt/cpp/temp_regist_cemter/RegistCenter/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="D:/MinGW64/bin/mingw32-make.exe -f &quot;C:/Users/Administrator/Desktop/RegistCenter/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="D:/MinGW64/bin/mingw32-make.exe -f &quot;C:/Users/Administrator/Desktop/RegistCenter/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="D:/MinGW64/bin/mingw32-make.exe -f &quot;C:/Users/Administrator/Desktop/RegistCenter/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="D:/MinGW64/bin/mingw32-make.exe -f &quot;C:/Users/Administrator/Desktop/RegistCenter/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/opt/cpp/temp_regist_cemter/RegistCenter/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/opt/cpp/temp_regist_cemter/RegistCenter/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/opt/cpp/temp_regist_cemter/RegistCenter/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/opt/cpp/temp_regist_cemter/RegistCenter/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/opt/cpp/temp_regist_cemter/RegistCenter/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/opt/cpp/temp_regist_cemter/RegistCenter/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/opt/cpp/temp_regist_cemter/RegistCenter/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/opt/cpp/temp_regist_cemter/RegistCenter/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/opt/cpp/temp_regist_cemter/RegistCenter/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="RegistCenter">
+				<Option output="/opt/cpp/temp_regist_cemter/RegistCenter/cmake-build-debug/RegistCenter" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/opt/cpp/temp_regist_cemter/RegistCenter/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/include/c++/4.9"/>
+					<Add directory="/usr/include/i386-linux-gnu/c++/4.9"/>
+					<Add directory="/usr/include/c++/4.9/backward"/>
+					<Add directory="/usr/lib/gcc/i686-linux-gnu/4.9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/i686-linux-gnu/4.9/include-fixed"/>
+					<Add directory="/usr/include/i386-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/opt/cpp/temp_regist_cemter/RegistCenter/cmake-build-debug/Makefile&quot;  VERBOSE=1 RegistCenter"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/opt/cpp/temp_regist_cemter/RegistCenter/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/opt/cpp/temp_regist_cemter/RegistCenter/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/opt/cpp/temp_regist_cemter/RegistCenter/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="RegistCenter/fast">
+				<Option output="/opt/cpp/temp_regist_cemter/RegistCenter/cmake-build-debug/RegistCenter" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/opt/cpp/temp_regist_cemter/RegistCenter/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/include/c++/4.9"/>
+					<Add directory="/usr/include/i386-linux-gnu/c++/4.9"/>
+					<Add directory="/usr/include/c++/4.9/backward"/>
+					<Add directory="/usr/lib/gcc/i686-linux-gnu/4.9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/i686-linux-gnu/4.9/include-fixed"/>
+					<Add directory="/usr/include/i386-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/opt/cpp/temp_regist_cemter/RegistCenter/cmake-build-debug/Makefile&quot;  VERBOSE=1 RegistCenter/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/opt/cpp/temp_regist_cemter/RegistCenter/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/opt/cpp/temp_regist_cemter/RegistCenter/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/opt/cpp/temp_regist_cemter/RegistCenter/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="C:/Users/Administrator/Desktop/RegistCenter/Handler.h">
+		<Unit filename="/opt/cpp/temp_regist_cemter/RegistCenter/Handler.h">
 			<Option target="RegistCenter"/>
 		</Unit>
-		<Unit filename="C:/Users/Administrator/Desktop/RegistCenter/MyHandle.cpp">
+		<Unit filename="/opt/cpp/temp_regist_cemter/RegistCenter/MyHandle.cpp">
 			<Option target="RegistCenter"/>
 		</Unit>
-		<Unit filename="C:/Users/Administrator/Desktop/RegistCenter/MyHandle.h">
+		<Unit filename="/opt/cpp/temp_regist_cemter/RegistCenter/MyHandle.h">
 			<Option target="RegistCenter"/>
 		</Unit>
-		<Unit filename="C:/Users/Administrator/Desktop/RegistCenter/RWLock.hpp">
+		<Unit filename="/opt/cpp/temp_regist_cemter/RegistCenter/RWLock.hpp">
 			<Option target="RegistCenter"/>
 		</Unit>
-		<Unit filename="C:/Users/Administrator/Desktop/RegistCenter/Server.cpp">
+		<Unit filename="/opt/cpp/temp_regist_cemter/RegistCenter/Server.cpp">
 			<Option target="RegistCenter"/>
 		</Unit>
-		<Unit filename="C:/Users/Administrator/Desktop/RegistCenter/Server.h">
+		<Unit filename="/opt/cpp/temp_regist_cemter/RegistCenter/Server.h">
 			<Option target="RegistCenter"/>
 		</Unit>
-		<Unit filename="C:/Users/Administrator/Desktop/RegistCenter/libs/http/HttpServer.cpp">
+		<Unit filename="/opt/cpp/temp_regist_cemter/RegistCenter/libs/http/HttpServer.cpp">
 			<Option target="RegistCenter"/>
 		</Unit>
-		<Unit filename="C:/Users/Administrator/Desktop/RegistCenter/libs/http/HttpServer.h">
+		<Unit filename="/opt/cpp/temp_regist_cemter/RegistCenter/libs/http/HttpServer.h">
 			<Option target="RegistCenter"/>
 		</Unit>
-		<Unit filename="C:/Users/Administrator/Desktop/RegistCenter/libs/http/Request.cpp">
+		<Unit filename="/opt/cpp/temp_regist_cemter/RegistCenter/libs/http/Request.cpp">
 			<Option target="RegistCenter"/>
 		</Unit>
-		<Unit filename="C:/Users/Administrator/Desktop/RegistCenter/libs/http/Request.h">
+		<Unit filename="/opt/cpp/temp_regist_cemter/RegistCenter/libs/http/Request.h">
 			<Option target="RegistCenter"/>
 		</Unit>
-		<Unit filename="C:/Users/Administrator/Desktop/RegistCenter/libs/http/Response.cpp">
+		<Unit filename="/opt/cpp/temp_regist_cemter/RegistCenter/libs/http/Response.cpp">
 			<Option target="RegistCenter"/>
 		</Unit>
-		<Unit filename="C:/Users/Administrator/Desktop/RegistCenter/libs/http/Response.h">
+		<Unit filename="/opt/cpp/temp_regist_cemter/RegistCenter/libs/http/Response.h">
 			<Option target="RegistCenter"/>
 		</Unit>
-		<Unit filename="C:/Users/Administrator/Desktop/RegistCenter/libs/http/util.cpp">
+		<Unit filename="/opt/cpp/temp_regist_cemter/RegistCenter/libs/http/util.cpp">
 			<Option target="RegistCenter"/>
 		</Unit>
-		<Unit filename="C:/Users/Administrator/Desktop/RegistCenter/libs/http/util.h">
+		<Unit filename="/opt/cpp/temp_regist_cemter/RegistCenter/libs/http/util.h">
 			<Option target="RegistCenter"/>
 		</Unit>
-		<Unit filename="C:/Users/Administrator/Desktop/RegistCenter/libs/my_socket.h">
+		<Unit filename="/opt/cpp/temp_regist_cemter/RegistCenter/libs/my_socket.h">
 			<Option target="RegistCenter"/>
 		</Unit>
-		<Unit filename="C:/Users/Administrator/Desktop/RegistCenter/main.cpp">
+		<Unit filename="/opt/cpp/temp_regist_cemter/RegistCenter/main.cpp">
 			<Option target="RegistCenter"/>
 		</Unit>
-		<Unit filename="C:/Users/Administrator/Desktop/RegistCenter/CMakeLists.txt">
+		<Unit filename="/opt/cpp/temp_regist_cemter/RegistCenter/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

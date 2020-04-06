@@ -11,6 +11,9 @@
 #include <fstream>
 #include <sstream>
 #include <fcntl.h>
+#ifndef _WIN64
+#include <sys/socket.h>
+#endif
 
 void Response::set_header(std::string key, std::string val) {
     header[key] = val;
