@@ -304,7 +304,9 @@ void MyHandle::HttpAddServer(Request req, Response *resp) {
 
         lock.lockWrite();
         if (server_list_map.count(server_name)) {
-            server_list_map[server_name]->push_back(new ServerInfo(ip, proportion));
+            if(!count(*server_list_map[server_name], ip)){
+                server_list_map[server_name]->push_back(new ServerInfo(ip, proportion));
+            }
         } else {
             auto li = new list<ServerInfo *>;
             li->push_back(new ServerInfo(ip, proportion));
