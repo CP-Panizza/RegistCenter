@@ -30,7 +30,11 @@ using namespace std;
 
 MyHandle::MyHandle(string username, string pwd) : http_username(username), http_pwd(pwd) {
     http_server = new HttpServer(HTTP_PORT);
+#ifdef _WIN64
+    http_server->set_static_path("\\resource");
+#else
     http_server->set_static_path("/resource");
+#endif
     auto login = std::bind(&MyHandle::HttpLogin, this, std::placeholders::_1, std::placeholders::_2);
     auto get_all = std::bind(&MyHandle::HttpGetAllServer, this, std::placeholders::_1, std::placeholders::_2);
     auto del_server = std::bind(&MyHandle::HttpDelServer, this, std::placeholders::_1, std::placeholders::_2);

@@ -21,7 +21,7 @@ Server::Server(int port) {
     WORD dwVersion = MAKEWORD(2, 2);
     WSAData wsaData;
     WSAStartup(dwVersion, &wsaData);
-
+    sockaddr_in servaddr;
     memset(&servaddr, 0, sizeof(servaddr));
     servaddr.sin_family = AF_INET; //网络类型
     servaddr.sin_addr.s_addr = htonl(INADDR_ANY);

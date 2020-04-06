@@ -1,1 +1,3 @@
-/usr/bin/g++   -pthread -g   CMakeFiles/RegistCenter.dir/main.cpp.o CMakeFiles/RegistCenter.dir/MyHandle.cpp.o CMakeFiles/RegistCenter.dir/Server.cpp.o CMakeFiles/RegistCenter.dir/libs/http/HttpServer.cpp.o CMakeFiles/RegistCenter.dir/libs/http/Request.cpp.o CMakeFiles/RegistCenter.dir/libs/http/Response.cpp.o CMakeFiles/RegistCenter.dir/libs/http/util.cpp.o  -o RegistCenter 
+"D:\CLion 2018.2\bin\cmake\win\bin\cmake.exe" -E remove -f CMakeFiles\RegistCenter.dir/objects.a
+D:\MinGW64\bin\ar.exe cr CMakeFiles\RegistCenter.dir/objects.a @CMakeFiles\RegistCenter.dir\objects1.rsp
+D:\MinGW64\bin\g++.exe -g   -Wl,--whole-archive CMakeFiles\RegistCenter.dir/objects.a -Wl,--no-whole-archive  -o RegistCenter.exe -Wl,--out-implib,libRegistCenter.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\RegistCenter.dir\linklibs.rsp
