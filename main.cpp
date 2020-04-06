@@ -11,6 +11,7 @@ using namespace std;
 
 
 int main() {
+
     auto conf = getConf("config.txt");
     string user_name;
     string pass_word;
