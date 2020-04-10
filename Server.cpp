@@ -186,6 +186,7 @@ void Server::disconnect(int cfd) {
 }
 #else
 void Server::disconnect(int cfd) {
+    clients.erase(cfd);
     int ret = epoll_ctl(epoll_fd, EPOLL_CTL_DEL, cfd, NULL);
     if (ret == -1) {
         perror("epoll_ctl del cfd error");

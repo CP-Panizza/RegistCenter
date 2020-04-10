@@ -75,7 +75,7 @@ void MyHandle::Server(int connfd, std::string remoteIp) {
 
     Document d;
     if (d.Parse(buff).HasParseError()) {
-        respmsg = "{\"ok\":false, \"msg\":\"Data Err\", \"data\":[]}";
+        respmsg = R"({"ok":false, "msg":"Data Err", "data":[]})";
     } else if (d.HasMember("Op") && string(d["Op"].GetString()) == "REG" && d.HasMember("ServiceList") &&
                d.HasMember("ServicePort")) { //注册服务
         //解析客户端发送过来的服务信息数据
@@ -96,7 +96,7 @@ void MyHandle::Server(int connfd, std::string remoteIp) {
             }
             lock.unlockWrite();
         }
-        respmsg = "{\"ok\":true, \"msg\":\"Done\", \"data\":[]}";
+        respmsg = R"({"ok":true, "msg":"Done", "data":[]})";
 
         /**
          * PULL:Data{
